@@ -5,7 +5,7 @@ import time
 sense = SenseHat()
 
 count = 0.2
-t = 3
+t = 2
 
 def pick_random_colour():
   random_red = randint(0, 255)
