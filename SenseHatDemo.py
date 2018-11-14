@@ -43,8 +43,8 @@ while True:
   else:
     sense.show_message("LUMMERHEDEN ER OVER OS", text_colour=red, scroll_speed=0.05)
   
-  if (t>23):
-    sense.show_message(",Puha, det er varmt!",text_colour=red, scroll_speed=0.05)
+  if (t<23):
+    sense.show_message("Puha, det er varmt!",text_colour=red, scroll_speed=0.05)
   
   else:
     sense.show_message("DET ER DET RENE GRØNLAND", text_colour=green, scroll_speed=0.05)
