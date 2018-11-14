@@ -32,7 +32,7 @@ while True:
   time.sleep(t)
   t = t-count
   if (t<0.2):
-    t + 0.2
+    t + 0.3
   sense.clear()
 
 
