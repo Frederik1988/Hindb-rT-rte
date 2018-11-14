@@ -31,7 +31,7 @@ while True:
   sense.set_pixels(all_pixels)
   time.sleep(t)
   t = t-count
-  if (t<0.2):
+  if (t<0.3):
     t + 0.2
   sense.clear()
 
