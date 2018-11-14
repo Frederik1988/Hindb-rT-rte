@@ -15,7 +15,7 @@ def pick_random_colour():
   
 
   
-while True:
+while (t>0.2):
   o = pick_random_colour()
   
   all_pixels = [
@@ -32,6 +32,8 @@ while True:
   time.sleep(t)
   t = t-count
   sense.clear()
-  if (t<0.2):
-    sense.set_pixels(all_pixels)
-    time.sleep(0.1)
+  
+if (t<0.2):
+  sense.set_pixels(all_pixels)
+  time.sleep(0.1)
+  sense.clear()
