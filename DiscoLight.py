@@ -5,7 +5,7 @@ import time
 sense = SenseHat()
 
 count = 0.2
-t = 2
+t = 1
 
 def pick_random_colour():
   random_red = randint(0, 255)
@@ -31,11 +31,9 @@ while True:
   sense.set_pixels(all_pixels)
   time.sleep(t)
   t = t-count
-  if (t<0.3):
+  if (t<0.2):
     t + 0.2
   sense.clear()
 
 
-
-    
     
