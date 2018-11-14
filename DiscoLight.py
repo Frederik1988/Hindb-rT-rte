@@ -15,7 +15,7 @@ def pick_random_colour():
   
 
   
-while True:
+while (t>0):
   o = pick_random_colour()
   
   all_pixels = [
