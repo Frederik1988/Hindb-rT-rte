@@ -17,7 +17,7 @@ def pick_random_colour():
   
 while (t>0.3):
   o = pick_random_colour()
-  x = pick_random-colour()
+  x = pick_random_colour()
   
   all_pixels = [
   x,o,o,o,o,o,x,x,
