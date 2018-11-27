@@ -22,7 +22,7 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 
 while True:
-    key = getKey()
+    key = getkey()
     if (key == 's'):
         pvm.ChangeDutyCycle(12)
         
