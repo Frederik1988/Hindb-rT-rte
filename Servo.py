@@ -5,7 +5,7 @@
 import RPi.GPIO as GPIO
 import time
 
-servo_pin = 29
+servo_pin = 12
 duty_cycle = 7.5     # Should be the centre for a SG90
 
 # Configure the Pi to use pin names (i.e. BCM) and allocate I/O
