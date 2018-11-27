@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-import keyboard
 
 import sys, termios, tty, os, time
  
