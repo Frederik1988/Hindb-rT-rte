@@ -5,13 +5,11 @@ import socket
 host = '192.168.24.239'
 port = 9576
 
-
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-try:
-    s.bind((host, port))
-except socket.error as e:
-    print(str(e))
 
+print(s)
+
+s.connect((host,port))
 
 data = s.recv(1024)
     
