@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import socket
 
-TCP_IP = 'localhost'
+TCP_IP = '192.168.24.239'
 TCP_PORT = 9576
 BUFFER_SIZE = 1024
 
