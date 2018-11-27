@@ -1,16 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-import socket
-
-TCP_IP = '192.168.24.188' # this IP of my pc. When I want raspberry pi 2`s as a client, I replace it with its IP '169.254.54.195'
-TCP_PORT = 12121
-BUFFER_SIZE = 1024
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((TCP_IP, TCP_PORT))
-
-data = s.recv(BUFFER_SIZE)
-
 
 import sys, termios, tty, os, time
  
