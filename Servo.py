@@ -3,6 +3,11 @@ import time
 GPIO.setmode (GPIO.BOARD)
 GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
-pwm.start(15.5)
-time.sleep(5)
-pwm.ChangeDutyCycle(7.5)
+
+
+while True:
+  
+  pwm.start(30)
+  time.sleep(3)
+  pwm.ChangeDutyCycle(90)
+  time.sleep(3)
