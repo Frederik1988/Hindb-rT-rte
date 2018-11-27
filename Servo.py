@@ -9,19 +9,4 @@ p = GPIO.PWM(12, 50)
 
 p.start(7.5)
 
-counter = 0
-
-while True:
-  
-  p.ChangeDutyCycle(7.5)  # 90 grader
-  time.sleep(1) 
-  p.ChangeDutyCycle(2.5)  # 0 grader
-  time.sleep(1) 
-  p.ChangeDutyCycle(12.5) # 180 grader
-  time.sleep(1) 
-        
-  counter = counter+1
-        
-  if(counter==5):
-    
-    p.stop()
+p.ChangeDutyCycle(7.5)  # 90 grader
