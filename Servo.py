@@ -7,7 +7,7 @@ pwm = GPIO.PWM (11, 50)
 
 while True:
   
-  pwm.start(18)
+  pwm.start(12)
   time.sleep(3)
-  pwm.ChangeDutyCycle(2)
+  pwm.ChangeDutyCycle(7)
   time.sleep(3)
