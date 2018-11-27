@@ -1,14 +1,5 @@
 import RPi.GPIO as GPIO
-import time
-
-GPIO.setmode(GPIO.BOARD)
-
-GPIO.setup(3, GPIO.OUT)
-
-p = GPIO.PWM(3, 50)
-
-p.start(7.5)
-
-time.sleep(2)
-
-p.ChangeDutyCycle(2.5)  # 90 grader
+GPIO.setmode (GPIO.BOARD)
+GPIO.setup (11, GPIO.OUT)
+pwm = GPIO.PWM (11, 50)
+pwm.start(5)
