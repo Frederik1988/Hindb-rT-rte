@@ -25,7 +25,7 @@ pwm.start(12)
 while True:
  char = getch()
  
-    if (char == "l"):
+    if (char == 'l'):
         pvm.ChangeDutyCycle(12)
         
     if (char =='o'):
