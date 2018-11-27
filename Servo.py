@@ -1,12 +1,28 @@
+# servo_test.py - Test functionality of SG90 Micro Servo
+#
+# Written By: David Such
+
 import RPi.GPIO as GPIO
 import time
 
+servo_pin = 29
+duty_cycle = 7.5     # Should be the centre for a SG90
+
+# Configure the Pi to use pin names (i.e. BCM) and allocate I/O
 GPIO.setmode(GPIO.BOARD)
+GPIO.setup(servo_pin, GPIO.OUT)
 
-GPIO.setup(29, GPIO.OUT)
+# Create PWM channel on the servo pin with a frequency of 50Hz
+pwm_servo = GPIO.PWM(servo_pin, 50)
+pwm_servo.start(duty_cycle)
 
-p = GPIO.PWM(29, 50)
-
-p.start(7.5)
-
-p.ChangeDutyCycle(7.5)  # 90 grader
+try:
+    while True:
+        duty_cycle = float(input("Enter Duty Cycle (Left = 5 to Right = 10):"))
+        pwm_servo.ChangeDutyCycle(duty_cycle)
+            
+except KeyboardInterrupt:
+    print("CTRL-C: Terminating program.")
+finally:
+    print("Cleaning up GPIO...")
+    GPIO.cleanup()
