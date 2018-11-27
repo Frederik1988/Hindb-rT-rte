@@ -24,10 +24,10 @@ pwm.start(12)
 
 while True:
  char = getch()
- 
- if (char == 'l'):
-  pvm.ChangeDutyCycle(12)
- if (char =='o'):
+ if (char =='l'):
   pwm.ChangeDutyCycle(7)
+ if (char == 'o'):
+  pvm.ChangeDutyCycle(12)
+ 
     
 
