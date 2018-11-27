@@ -10,10 +10,10 @@ pwm.start(12)
 
 while True:
     
-    if keyboard.is_pressed('l')
+    if keyboard.is_pressed('l'):
         pvm.ChangeDutyCycle(12)
         
-    if keyboard.is_pressed('o')
+    if keyboard.is_pressed('o'):
         pwm.ChangeDutyCycle(7)
     
 
