@@ -25,3 +25,9 @@ try:
         if(counter==5):
           p.stop()
           GPIO.cleanup()
+            
+except KeyboardInterrupt:
+    print("CTRL-C: Terminating program.")
+finally:
+    print("Cleaning up GPIO...")
+    GPIO.cleanup()
