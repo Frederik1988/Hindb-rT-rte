@@ -2,12 +2,16 @@ import RPi.GPIO as GPIO
 import time
 import socket
 
-TCP_IP = '192.168.24.239'
-TCP_PORT = 9576
+host = '192.168.24.239'
+port = 9576
 BUFFER_SIZE = 1024
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((TCP_IP, TCP_PORT))
+try:
+    s.bind((host, port))
+except socket.error as e:
+    print(str(e))
+
 
 data = s.recv(BUFFER_SIZE)
     
