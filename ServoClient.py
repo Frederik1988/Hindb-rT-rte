@@ -4,7 +4,7 @@ import socket
 
 host = '192.168.24.239'
 port = 9576
-BUFFER_SIZE = 1024
+
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 try:
@@ -13,7 +13,7 @@ except socket.error as e:
     print(str(e))
 
 
-data = s.recv(BUFFER_SIZE)
+data = s.recv(1024)
     
 GPIO.setmode (GPIO.BOARD)
 GPIO.setup (11, GPIO.OUT)
