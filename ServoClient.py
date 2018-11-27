@@ -3,7 +3,7 @@ import time
 import socket
 
 TCP_IP = '192.168.24.188' 
-TCP_PORT = 12121
+TCP_PORT = 9576
 BUFFER_SIZE = 1024
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
