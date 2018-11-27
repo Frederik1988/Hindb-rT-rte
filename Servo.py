@@ -28,6 +28,10 @@ while True:
   pwm.ChangeDutyCycle(7)
  if (char == 'o'):
   pwm.ChangeDutyCycle(12)
+ if (char == 'r'):
+  pwm.ChangeDutyCycle(22)
+ if (char == 'q'):
+  break
  
     
 
