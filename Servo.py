@@ -27,7 +27,7 @@ while True:
  if (char =='l'):
   pwm.ChangeDutyCycle(7)
  if (char == 'o'):
-  pvm.ChangeDutyCycle(12)
+  pwm.ChangeDutyCycle(12)
  
     
 
