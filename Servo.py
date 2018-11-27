@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import keyboard
 
     
 GPIO.setmode (GPIO.BOARD)
@@ -9,10 +10,10 @@ pwm.start(12)
 
 while True:
     
-    if (input('l')):
+    if keyboard.is_pressed('l')
         pvm.ChangeDutyCycle(12)
         
-    if(input('o')):
+    if keyboard.is_pressed('o')
         pwm.ChangeDutyCycle(7)
     
 
