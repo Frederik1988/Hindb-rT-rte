@@ -15,7 +15,7 @@ messageLocked = "The door is locked"
 
 messageUnlocked = "The door is unlocked"
 
-messageQuit = "Sut Kian....!"
+messageQuit = "Goodbye.."
 
 sense = SenseHat()
 
