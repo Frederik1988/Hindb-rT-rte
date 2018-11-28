@@ -7,9 +7,9 @@ import socket
 TCP_IP = "192.168.24.188"
 TCP_PORT = 9576
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-s.connect((TCP_IP, TCP_PORT)) 
+sock.connect((TCP_IP, TCP_PORT)) 
 
 sense = SenseHat()
 
@@ -47,7 +47,7 @@ sense.set_pixels(open)
 
 
 while True:
-  data = s.recv(1024)
+  data = sock.recv(1024)
   message = data.decode('utf-8')
   
   if (message =='l'):
