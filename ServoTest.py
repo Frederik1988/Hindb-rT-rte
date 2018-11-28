@@ -14,8 +14,8 @@ sock.connect((TCP_IP, TCP_PORT))
 sense = SenseHat()
 
 g = (0,0,255)
-r = (255,0,0)
-s = (0,0,0)
+r = (0,0,0)
+s = (255,0,0)
 
 locked = [
 r,s,s,s,s,s,s,r, 
