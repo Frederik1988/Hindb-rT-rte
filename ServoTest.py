@@ -13,4 +13,5 @@ s.connect((TCP_IP, TCP_PORT))
 
 data = s.recv(1024)
 
-print(data)
+while True:
+  print(data)
