@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import socket
 
-TCP_IP = '127.0.0.1'
+TCP_IP = '192.168.24.12'
 TCP_PORT = 9576
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
