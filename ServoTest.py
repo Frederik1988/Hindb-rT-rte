@@ -52,12 +52,12 @@ while True:
   
   print(message)
   
-  if (message =='l'):
+  if (message =='l/r/n'):
     pwm.ChangeDutyCycle(7)
     sense.set_pixels(locked)
-  if (message == 'o'):
+  if (message == 'o/r/n'):
     pwm.ChangeDutyCycle(12)
     sense.set_pixels(unlocked)
-  if (message == 'q'):
+  if (message == 'q/r/n'):
     break
   
