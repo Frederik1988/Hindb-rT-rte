@@ -48,9 +48,8 @@ sense.set_pixels(unlocked)
 
 while True:
   data = sock.recv(1024)
-  message = data.decode('utf-8')
-  message.strip("/r/n")
-  
+  message = data.decode('utf-8', strip())
+    
   print(message)
   
   if (message =='l'):
