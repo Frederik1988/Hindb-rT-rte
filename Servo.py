@@ -11,8 +11,6 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 s.connect((TCP_IP, TCP_PORT))
 
-print("Client ready")
-
 sense = SenseHat()
 
 g = (0,255,0)
@@ -63,7 +61,6 @@ pwm.start(12)
 while True:
   data = (s.recv(1024))
   message = data.decode('utf-8')
-  message = getch()
                           
   if (message =='l'):
     pwm.ChangeDutyCycle(7)
