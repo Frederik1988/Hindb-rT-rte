@@ -28,7 +28,7 @@ r,s,s,s,s,s,s,r,
 r,s,s,s,s,s,s,r,
 ]
 
-open = [
+unlocked = [
 g,g,g,g,g,g,g,g,
 g,g,g,s,s,g,g,g,
 g,g,s,g,g,s,g,g,
@@ -50,12 +50,14 @@ while True:
   data = sock.recv(1024)
   message = data.decode('utf-8')
   
+  print(message)
+  
   if (message =='l'):
     pwm.ChangeDutyCycle(7)
     sense.set_pixels(locked)
   if (message == 'o'):
     pwm.ChangeDutyCycle(12)
-    sense.set_pixels(open)
+    sense.set_pixels(unlocked)
   if (message == 'q'):
     break
   
