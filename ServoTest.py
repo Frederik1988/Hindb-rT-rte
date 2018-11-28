@@ -29,13 +29,13 @@ r,r,r,r,r,r,r,r,
 ]
 
 unlocked = [
-r,s,s,s,s,s,s,r,
-r,s,s,s,s,s,s,r,
-r,s,s,s,s,s,s,r,
-r,s,s,s,s,s,s,r,
-r,r,r,r,r,s,r,r,
-r,r,s,r,r,s,r,r,
-r,r,r,s,s,r,r,r,
+r,g,g,g,g,g,g,r,
+r,g,g,g,g,g,g,r,
+r,g,g,g,g,g,g,r,
+r,g,g,g,g,g,g,r,
+r,r,r,r,r,g,r,r,
+r,r,g,r,r,g,r,r,
+r,r,r,g,g,r,r,r,
 r,r,r,r,r,r,r,r,
 ]
 
@@ -50,8 +50,7 @@ while True:
   data = sock.recv(1024)
   message = data.decode('utf-8')
   message = message [0: -2]
-    
-  print(message)
+ 
   
   if (message =='l'):
     pwm.ChangeDutyCycle(7)
