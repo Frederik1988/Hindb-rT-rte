@@ -2,12 +2,9 @@ import RPi.GPIO as GPIO
 import time
 import socket
 
-TCP_IP = '192.168.24.12'
-TCP_PORT = 9576
-
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-s.connect((TCP_IP, TCP_PORT)) 
+s.connect(("192.168.24.12", 9576)) 
 
 data = s.recv(1024)
     
@@ -25,3 +22,5 @@ while True:
  
  if (char == 'q'):
   break
+
+s.close()
