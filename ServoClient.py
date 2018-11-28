@@ -2,14 +2,14 @@ import RPi.GPIO as GPIO
 import time
 import socket
 
-host = '127.0.0.1'
+TCP_IP = '127.0.0.1'
 port = 9576
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 print(s)
 
-s.connect((host, port))
+s.connect((TCP_IP, port))
 
 data = s.recv(1024)
     
