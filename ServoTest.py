@@ -15,6 +15,8 @@ messageLocked = "The door is locked"
 
 messageUnlocked = "The door is unlocked"
 
+messageNightTime = "The lock has automatically been locked. It is still possible to unlock the door"
+
 messageQuit = "Goodbye.."
 
 sense = SenseHat()
@@ -70,6 +72,10 @@ while True:
   if (message == 'q'):
     sock.send(bytes(messageQuit, "UTF-8"))
     break
+   
+  if (message == 'n'):
+    sense.set_pixels(locked)
+    sock.send(bytes(messageNightTime, "UTF-8"))
   
    
   for event in sense.stick.get_events():
