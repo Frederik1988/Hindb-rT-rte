@@ -29,14 +29,14 @@ r,r,r,r,r,r,r,r,
 ]
 
 unlocked = [
-g,s,s,s,s,s,s,g,
-g,s,s,s,s,s,s,g,
-g,s,s,s,s,s,s,g,
-g,s,s,s,s,s,s,g,
-g,g,g,g,g,s,g,g,
-g,g,s,g,g,s,g,g,
-g,g,g,s,s,g,g,g,
-g,g,g,g,g,g,g,g, 
+r,s,s,s,s,s,s,r,
+r,s,s,s,s,s,s,r,
+r,s,s,s,s,s,s,r,
+r,s,s,s,s,s,s,r,
+r,r,r,r,r,s,r,r,
+r,r,s,r,r,s,r,r,
+r,r,r,s,s,r,r,r,
+r,r,r,r,r,r,r,r,
 ]
 
 GPIO.setmode (GPIO.BOARD)
