@@ -53,6 +53,7 @@ sense.set_pixels(unlocked)
 
 
 while True:
+  
   data = sock.recv(1024)
   message = data.decode('utf-8')
   message = message [0: -2]
@@ -69,4 +70,14 @@ while True:
   if (message == 'q'):
     sock.send(bytes(messageQuit, "UTF-8"))
     break
+  
+   
+  for event in sense.stick.get_events():
+    if event.action == "pressed":
+      if event.direction == "up":
+        pwm.ChangeDutyCycle(12)
+        sense.set_pixels(unlocked)
+      elif event.direction == "down":
+        pwm.ChangeDutyCycle(7)
+        sense.set_pixels(locked)
   
