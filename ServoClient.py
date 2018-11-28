@@ -2,9 +2,9 @@ import RPi.GPIO as GPIO
 import time
 import socket
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s = socket.socket()
 
-s.connect(("192.168.24.12", "9576")) 
+s.connect(("192.168.24.12", 9576)) 
 
 data = s.recv(1024)
     
