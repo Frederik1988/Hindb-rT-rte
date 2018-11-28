@@ -47,7 +47,7 @@ sense.set_pixels(open)
 
 
 while True:
-  data = (s.recv(1024))
+  data = s.recv(1024)
   message = data.decode('utf-8')
   
   if (message =='l'):
