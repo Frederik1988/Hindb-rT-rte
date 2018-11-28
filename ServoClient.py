@@ -9,7 +9,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 print(s)
 
-s.connect((host,port))
+s.connect((host, port))
 
 data = s.recv(1024)
     
