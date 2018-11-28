@@ -11,6 +11,10 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 sock.connect((TCP_IP, TCP_PORT)) 
 
+messageLocked = "The door is locked"
+
+messageUnlocked = "The door is unlocked"
+
 sense = SenseHat()
 
 g = (0,255,0)
@@ -55,9 +59,11 @@ while True:
   if (message =='l'):
     pwm.ChangeDutyCycle(7)
     sense.set_pixels(locked)
+    sock.send(messageLocked)
   if (message == 'o'):
     pwm.ChangeDutyCycle(12)
     sense.set_pixels(unlocked)
+    sock.send(messageUnlocked)
   if (message == 'q'):
     break
   
