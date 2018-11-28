@@ -61,20 +61,18 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 
 while True:
-    
-    data = (s.recv(1024))
-    message = data.decode('utf-8')
-    message = getch()
+  data = (s.recv(1024))
+  message = data.decode('utf-8')
+  message = getch()
                           
-    if (message =='l'):
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
-    if (message == 'o'):
-        pwm.ChangeDutyCycle(12)
-        sense.set_pixels(open)
- 
-    if (message == 'q'):
-        break
+  if (message =='l'):
+    pwm.ChangeDutyCycle(7)
+    sense.set_pixels(locked)
+  if (message == 'o'):
+    pwm.ChangeDutyCycle(12)
+    sense.set_pixels(open)
+  if (message == 'q'):
+    break
  
     
 
