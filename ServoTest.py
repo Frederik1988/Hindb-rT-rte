@@ -11,7 +11,8 @@ print(s)
 
 s.connect((TCP_IP, TCP_PORT)) 
 
-data = s.recv(1024)
+
 
 while True:
+  data = s.recv(1024)
   print(data)
