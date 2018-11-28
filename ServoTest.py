@@ -43,7 +43,7 @@ GPIO.setmode (GPIO.BOARD)
 GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(12)
-sense.set_pixels(open)
+sense.set_pixels(unlocked)
 
 
 while True:
