@@ -13,7 +13,7 @@ sock.connect((TCP_IP, TCP_PORT))
 
 sense = SenseHat()
 
-g = (0,0,255)
+g = (0,255,0)
 r = (0,0,0)
 s = (255,0,0)
 
