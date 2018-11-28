@@ -2,6 +2,16 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import sys, termios, tty, os, time
+import socket
+
+TCP_IP = "192.168.24.188"
+TCP_PORT = 9576
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+s.connect((TCP_IP, TCP_PORT))
+
+print("Client ready")
 
 sense = SenseHat()
 
@@ -51,16 +61,20 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 
 while True:
- char = getch()
- if (char =='l'):
-  pwm.ChangeDutyCycle(7)
-  sense.set_pixels(locked)
- if (char == 'o'):
-  pwm.ChangeDutyCycle(12)
-  sense.set_pixels(open)
+    
+    data = (s.recv(1024))
+    message = data.decode('utf-8'
+    message = getch()
+                          
+    if (message =='l'):
+        pwm.ChangeDutyCycle(7)
+        sense.set_pixels(locked)
+    if (message == 'o'):
+        pwm.ChangeDutyCycle(12)
+        sense.set_pixels(open)
  
- if (char == 'q'):
-  break
+    if (message == 'q'):
+        break
  
     
 
