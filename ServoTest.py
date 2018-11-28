@@ -48,16 +48,17 @@ sense.set_pixels(unlocked)
 
 while True:
   data = sock.recv(1024)
-  message = data.decode('utf-8')
+  message = (data.decode('utf-8'), end ="")
+  
   
   print(message)
   
-  if (message =='l/r/n'):
+  if (message =='l'):
     pwm.ChangeDutyCycle(7)
     sense.set_pixels(locked)
-  if (message == 'o/r/n'):
+  if (message == 'o):
     pwm.ChangeDutyCycle(12)
     sense.set_pixels(unlocked)
-  if (message == 'q/r/n'):
+  if (message == 'q'):
     break
   
