@@ -14,5 +14,6 @@ s.connect((TCP_IP, TCP_PORT))
 
 
 while True:
-  data = s.recv(1024)
-  print(data)
+  data = (s.recv(1024))
+  message = data.decode('utf-8')
+  print(message)
