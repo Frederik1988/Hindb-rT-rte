@@ -59,11 +59,11 @@ while True:
   if (message =='l'):
     pwm.ChangeDutyCycle(7)
     sense.set_pixels(locked)
-    sock.send(bytes(messageLocked, "UTF-8")
+    sock.send(bytes(messageLocked, "UTF-8"))
   if (message == 'o'):
     pwm.ChangeDutyCycle(12)
     sense.set_pixels(unlocked)
-    sock.send(bytes(messageUnlocked, "UTF-8")
+    sock.send(bytes(messageUnlocked, "UTF-8"))
   if (message == 'q'):
     break
   
