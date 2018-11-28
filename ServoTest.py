@@ -15,6 +15,8 @@ messageLocked = "The door is locked"
 
 messageUnlocked = "The door is unlocked"
 
+messageQuit = "Sut Kian....!"
+
 sense = SenseHat()
 
 g = (0,255,0)
@@ -65,5 +67,6 @@ while True:
     sense.set_pixels(unlocked)
     sock.send(bytes(messageUnlocked, "UTF-8"))
   if (message == 'q'):
+    sock.send(bytes(messageQuit, "UTF-8"))
     break
   
