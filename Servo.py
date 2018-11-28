@@ -63,7 +63,7 @@ pwm.start(12)
 while True:
     
     data = (s.recv(1024))
-    message = data.decode('utf-8'
+    message = data.decode('utf-8')
     message = getch()
                           
     if (message =='l'):
