@@ -49,7 +49,7 @@ sense.set_pixels(unlocked)
 while True:
   data = sock.recv(1024)
   message = data.decode('utf-8')
-  message = messeage [0: -2]
+  message = message [0: -2]
     
   print(message)
   
