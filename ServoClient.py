@@ -7,7 +7,7 @@ TCP_PORT = 9576
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-s.connect(TCP_IP, TCP_PORT) 
+s.connect((TCP_IP, TCP_PORT)) 
 
 data = s.recv(1024)
     
