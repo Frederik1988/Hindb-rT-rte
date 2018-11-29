@@ -4,7 +4,7 @@ from sense_hat import SenseHat
 import sys, termios, tty, os, time
 import socket
 
-TCP_IP = "192.168.24.239"
+TCP_IP = "192.168.24.188"
 TCP_PORT = 9576
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -14,8 +14,6 @@ sock.connect((TCP_IP, TCP_PORT))
 messageLocked = "The door is locked"
 
 messageUnlocked = "The door is unlocked"
-
-messageNightTime = "The lock has automatically been locked. It is still possible to unlock the door"
 
 messageQuit = "Goodbye.."
 
@@ -53,17 +51,8 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 sense.set_pixels(unlocked)
 
-for event in sense.stick.get_events():
-    if event.action == "pressed":
-      if event.direction == "middle":
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
+
 while True:
-  
-  
-      
-        
-  
   data = sock.recv(1024)
   message = data.decode('utf-8')
   message = message [0: -2]
@@ -80,10 +69,3 @@ while True:
   if (message == 'q'):
     sock.send(bytes(messageQuit, "UTF-8"))
     break
-   
-  if (message == 'n'):
-    sense.set_pixels(locked)
-    sock.send(bytes(messageNightTime, "UTF-8"))
-  
-   
-  
