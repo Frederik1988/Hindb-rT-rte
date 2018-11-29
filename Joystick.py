@@ -36,24 +36,25 @@ GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 sense.set_pixels(unlocked)
+i = 0
 
 while True:
   
-  if (pvm.DutyCycle == pvm.DutyCycle(12)):
-    
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
+  for event in sense.stick.get_events():
+    # Check if the joystick was pressed
+    if event.action == "pressed":
+      if(i == 0):
         if event.direction == "middle":
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
-   
-  if (pvm.DutyCycle == pvm.DutyCycle(7)):
-    for event in sense.stick.get_events():
-    
-      if event.action == "pressed":
-        if event.direction == "middle":
-        pwm.ChangeDutyCycle(12)
-        sense.set_pixels(unlocked)
+          pwm.ChangeDutyCycle(7)
+          sense.set_pixels(locked)
+          i = i+1
+        elif(i == 0):
+          if event.direction == "middle":
+            pwm.ChangeDutyCycle(7)
+            sense.set_pixels(locked)
+            i = i-1
+          
+     
   
   
   
