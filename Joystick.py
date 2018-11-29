@@ -9,6 +9,17 @@ g = (0,255,0)
 r = (0,0,0)
 s = (255,0,0)
 
+unlocked = [
+r,g,g,g,g,g,g,r,
+r,g,g,g,g,g,g,r,
+r,g,g,g,g,g,g,r,
+r,g,g,g,g,g,g,r,
+r,r,r,r,r,g,r,r,
+r,r,g,r,r,g,r,r,
+r,r,r,g,g,r,r,r,
+r,r,r,r,r,r,r,r,
+]
+
 locked = [
 r,s,s,s,s,s,s,r, 
 r,s,s,s,s,s,s,r,
