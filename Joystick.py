@@ -1,28 +1,35 @@
 from sense_hat import SenseHat
 from time import sleep
 sense = SenseHat()
+import RPi.GPIO as GPIO
 
-e = (0, 0, 0)
-w = (255, 255, 255)
+sense = SenseHat()
 
-sense.clear()
+g = (0,255,0)
+r = (0,0,0)
+s = (255,0,0)
+
+locked = [
+r,s,s,s,s,s,s,r, 
+r,s,s,s,s,s,s,r,
+r,s,s,s,s,s,s,r,
+r,s,s,s,s,s,s,r,
+r,r,s,r,r,s,r,r,  
+r,r,s,r,r,s,r,r, 
+r,r,r,s,s,r,r,r,    
+r,r,r,r,r,r,r,r,
+]
+
+GPIO.setmode (GPIO.BOARD)
+GPIO.setup (11, GPIO.OUT)
+pwm = GPIO.PWM (11, 50)
+pwm.start(12)
+sense.set_pixels(unlocked)
+
 while True:
-  for event in sense.stick.get_events():
-    # Check if the joystick was pressed
-    if event.action == "pressed":
-      
-      # Check which direction
-      if event.direction == "up":
-        sense.show_letter("U")      # Up arrow
-      elif event.direction == "down":
-        sense.show_letter("D")      # Down arrow
-      elif event.direction == "left": 
-        sense.show_letter("L")      # Left arrow
-      elif event.direction == "right":
-        sense.show_letter("R")      # Right arrow
-      elif event.direction == "middle":
-        sense.show_letter("M")      # Enter key
-      
-      # Wait a while and then clear the screen
-      sleep(0.5)
-      sense.clear()
+  
+  def do_thing(event):
+      if event.action == 'pressed':
+        pwm.ChangeDutyCycle(7)
+        sense.set_pixels(locked)
+  
