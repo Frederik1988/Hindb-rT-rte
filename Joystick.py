@@ -39,7 +39,7 @@ sense.set_pixels(unlocked)
 
 while True:
   
-  if (pvm.DutyCycle == 12):
+  if (pvm.DutyCycle == pvm.DutyCycle(12)):
     
     for event in sense.stick.get_events():
       if event.action == "pressed":
@@ -47,7 +47,7 @@ while True:
         pwm.ChangeDutyCycle(7)
         sense.set_pixels(locked)
    
-  if (pvm.DutyCycle == 7):
+  if (pvm.DutyCycle == pvm.DutyCycle(7)):
     for event in sense.stick.get_events():
     
       if event.action == "pressed":
