@@ -4,7 +4,7 @@ from sense_hat import SenseHat
 import sys, termios, tty, os, time
 import socket
 
-TCP_IP = "192.168.24.188"
+TCP_IP = "192.168.24.239"
 TCP_PORT = 9576
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
