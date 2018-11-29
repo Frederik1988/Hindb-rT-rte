@@ -51,6 +51,6 @@ while True:
       if event.action == "pressed":
         pwm.ChangeDutyCycle(12)
         sense.set_pixels(unlocked)
-        i = i+1
+        i = i-1
 
   
