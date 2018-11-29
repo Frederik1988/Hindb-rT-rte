@@ -53,14 +53,14 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 sense.set_pixels(unlocked)
 
-
-while True:
-  
-  for event in sense.stick.get_events():
+for event in sense.stick.get_events():
     if event.action == "pressed":
       if event.direction == "middle":
         pwm.ChangeDutyCycle(7)
         sense.set_pixels(locked)
+while True:
+  
+  
       
         
   
