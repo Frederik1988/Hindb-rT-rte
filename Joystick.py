@@ -39,8 +39,13 @@ sense.set_pixels(unlocked)
 
 while True:
   
-  def do_thing(event):
-      if event.action == 'pressed':
+  for event in sense.stick.get_events():
+    # Check if the joystick was pressed
+    if event.action == "pressed":
+      if event.direction == "middle":
         pwm.ChangeDutyCycle(7)
         sense.set_pixels(locked)
+        
+  
+
   
