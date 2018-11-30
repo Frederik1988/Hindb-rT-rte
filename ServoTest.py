@@ -50,22 +50,47 @@ GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 sense.set_pixels(unlocked)
+i = 0
 
 
 while True:
   data = sock.recv(1024)
   message = data.decode('utf-8')
   message = message [0: -2]
- 
   
-  if (message =='l'):
-    pwm.ChangeDutyCycle(7)
-    sense.set_pixels(locked)
-    sock.send(bytes(messageLocked, "UTF-8"))
-  if (message == 'o'):
-    pwm.ChangeDutyCycle(12)
-    sense.set_pixels(unlocked)
-    sock.send(bytes(messageUnlocked, "UTF-8"))
-  if (message == 'q'):
-    sock.send(bytes(messageQuit, "UTF-8"))
-    break
+  if (i == 0):
+    if (message =='l'):
+      pwm.ChangeDutyCycle(7)
+      sense.set_pixels(locked)
+      sock.send(bytes(messageLocked, "UTF-8"))
+      i = 1
+    
+    if (message == 'q'):
+      sock.send(bytes(messageQuit, "UTF-8"))
+      break
+    
+    for event in sense.stick.get_events():
+      if event.action == "pressed":
+        pwm.ChangeDutyCycle(7)
+        sense.set_pixels(locked)
+        sock.send(bytes(messageLocked, "UTF-8"))
+        i = 1
+        
+    if (i == 1):
+      if (message == 'o'):
+        pwm.ChangeDutyCycle(12)
+        sense.set_pixels(unlocked)
+        sock.send(bytes(messageUnlocked, "UTF-8"))
+        i = 0
+        
+      if (message == 'q'):
+        sock.send(bytes(messageQuit, "UTF-8"))
+        break
+        
+      for event in sense.stick.get_events():
+        if event.action == "pressed":
+          pwm.ChangeDutyCycle(12)
+          sense.set_pixels(unlocked)
+          sock.send(bytes(messageUnlocked, "UTF-8"))
+          i = 0
+
