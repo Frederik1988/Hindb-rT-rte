@@ -15,6 +15,10 @@ messageLocked = "The door is locked"
 
 messageUnlocked = "The door is unlocked"
 
+messageButtonLocked = "The door is locked by button"
+
+messageButtonUnlocked = "The door is unlocked by button"
+
 messageQuit = "Goodbye.."
 
 sense = SenseHat()
@@ -74,7 +78,7 @@ while True:
       if event.action == "pressed":
         pwm.ChangeDutyCycle(7)
         sense.set_pixels(locked)
-        sock.send(bytes(messageLocked, "UTF-8"))
+        sock.send(bytes(messageButtonLocked, "UTF-8"))
         i = 1
         
   if (i == 1):
@@ -96,6 +100,6 @@ while True:
       if event.action == "pressed":
         pwm.ChangeDutyCycle(12)
         sense.set_pixels(unlocked)
-        sock.send(bytes(messageUnlocked, "UTF-8"))
+        sock.send(bytes(messageButtonUnlocked, "UTF-8"))
         i = 0
 
