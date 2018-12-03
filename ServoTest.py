@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
-import sys, termios, tty, os, time
 import socket
 
 TCP_IP = "192.168.24.239"
@@ -60,10 +59,6 @@ i = 0
 while True: 
   
   if (i == 0):
-    data = sock.recv(1024)
-    message = data.decode('utf-8')
-    message = message [0: -2]
-    
     for event in sense.stick.get_events():
       if event.action == "pressed":
         pwm.ChangeDutyCycle(7)
@@ -71,39 +66,30 @@ while True:
         sock.send(bytes(messageButtonLocked, "UTF-8"))
         i = 1
         
+    data = sock.recv(1024)
+    message = data.decode('utf-8')
+    message = message [0: -2]    
+        
     if (message =='l'):
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
       sock.send(bytes(messageLocked, "UTF-8"))
-      i = 1
-    
-    if (message == 'q'):
-      sock.send(bytes(messageQuit, "UTF-8"))
-      break
-    
-    
+      i = 1    
         
   if (i == 1):
-    data = sock.recv(1024)
-    message = data.decode('utf-8')
-    message = message [0: -2]
-    
     for event in sense.stick.get_events():
       if event.action == "pressed":
         pwm.ChangeDutyCycle(12)
         sense.set_pixels(unlocked)
         sock.send(bytes(messageButtonUnlocked, "UTF-8"))
         i = 0
+        
+    data = sock.recv(1024)
+    message = data.decode('utf-8')
+    message = message [0: -2]   
   
     if (message == 'o'):
       pwm.ChangeDutyCycle(12)
       sense.set_pixels(unlocked)
       sock.send(bytes(messageUnlocked, "UTF-8"))
       i = 0
-        
-    if (message == 'q'):
-      sock.send(bytes(messageQuit, "UTF-8"))
-      break
-        
-    
-
