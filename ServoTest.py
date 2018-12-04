@@ -64,7 +64,7 @@ while True:
     message = message [0: -2] 
     
     if (message == 'kat'):
-      sock.send(bytes(messageQuit "UTF-8"))
+      sock.send(bytes(messageQuit, "UTF-8"))
       break    
         
     if (message =='l'):
@@ -80,7 +80,7 @@ while True:
     message = message [0: -2] 
        
     if (message == 'kat'):
-    sock.send(bytes(messageQuit "UTF-8"))
+    sock.send(bytes(messageQuit, "UTF-8"))
     break
         
     if (message == 'o'):
