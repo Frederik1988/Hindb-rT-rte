@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
+import asyncio
 
 TCP_IP = "192.168.24.239"
 TCP_PORT = 9576
