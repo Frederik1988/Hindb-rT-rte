@@ -79,12 +79,11 @@ asyncio.ensure_future(lock(loop))
   
 loop = asyncio.get_event_loop()
 asyncio.ensure_future(open(loop))
-
+loop.run_forever()
   
 
 while True: 
-  if (i == 0): 
-    loop.run_forever()
+  if (i == 0):     
     
     data = sock.recv(1024)
     message = data.decode('utf-8')
@@ -97,8 +96,6 @@ while True:
       i = 1    
         
   if (i == 1):
-    
-    loop.run_forever()
     
     data = sock.recv(1024)
     message = data.decode('utf-8')
