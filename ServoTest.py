@@ -2,7 +2,6 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
-from threading import Thread
 
 TCP_IP = "192.168.24.239"
 TCP_PORT = 9576
@@ -49,39 +48,24 @@ s,s,s,g,g,s,s,s,
 s,s,s,s,s,s,s,s,
 ]
 
-def button_click_lock ():
-  for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
-        sock.send(bytes(messageButtonLocked, "UTF-8"))
-        i = 1
- 
-def button_click_open():
-  for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(12)
-        sense.set_pixels(unlocked)
-        sock.send(bytes(messageButtonUnlocked, "UTF-8"))
-        i = 0
-
 GPIO.setmode (GPIO.BOARD)
 GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 sense.set_pixels(unlocked)
 i = 0
-t = 1
-openBtn = Thread(target=button_click_open)
-lockBtn = Thread(target=button_click_lock)
+
 
 while True: 
   
   if (i == 0):
-    if (t == 1):
-      lockBtn.start()
-      t = 2
-    
+    #for event in sense.stick.get_events():
+      #if event.action == "pressed":
+        #pwm.ChangeDutyCycle(7)
+        #sense.set_pixels(locked)
+        #sock.send(bytes(messageButtonLocked, "UTF-8"))
+        #i = 1
+        
     data = sock.recv(1024)
     message = data.decode('utf-8')
     message = message [0: -2]    
@@ -93,9 +77,12 @@ while True:
       i = 1    
         
   if (i == 1):
-    if (t == 2):
-      openBtn.start()
-      t = 3
+    #for event in sense.stick.get_events():
+      #if event.action == "pressed":
+        #pwm.ChangeDutyCycle(12)
+        #sense.set_pixels(unlocked)
+        #sock.send(bytes(messageButtonUnlocked, "UTF-8"))
+        #i = 0
         
     data = sock.recv(1024)
     message = data.decode('utf-8')
