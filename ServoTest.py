@@ -79,15 +79,15 @@ while True:
     message = data.decode('utf-8')
     message = message [0: -2] 
        
-    if (message == 'kat'):
+  if (message == 'kat'):
     sock.send(bytes(messageQuit, "UTF-8"))
     break
         
-    if (message == 'o'):
-      pwm.ChangeDutyCycle(12)
-      sense.set_pixels(unlocked)
-      sock.send(bytes(messageUnlocked, "UTF-8"))
-      i = 0
+  if (message == 'o'):    
+    pwm.ChangeDutyCycle(12)
+    sense.set_pixels(unlocked)
+    sock.send(bytes(messageUnlocked, "UTF-8"))
+    i = 0
 
 while True:
   
