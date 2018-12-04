@@ -3,6 +3,7 @@ import time
 from sense_hat import SenseHat
 import socket
 import asyncio
+from threading import Thread
 
 TCP_IP = "192.168.24.239"
 TCP_PORT = 9576
@@ -56,7 +57,9 @@ pwm.start(12)
 sense.set_pixels(unlocked)
 i = 0
 
-async def button_click_lock():
+async def button_click_lock(loop):
+    asyncio.set_event_loop(loop)
+    loop.run_forever()
     for event in sense.stick.get_events():
       if event.action == "pressed":
         pwm.ChangeDutyCycle(7)
@@ -64,21 +67,26 @@ async def button_click_lock():
         sock.send(bytes(messageButtonLocked, "UTF-8"))
         i = 1
         
-async def button_click_open():
+async def button_click_open(loop):
+    asyncio.set_event_loop(loop)
+    loop.run_forever()
     for event in sense.stick.get_events():
       if event.action == "pressed":
         pwm.ChangeDutyCycle(12)
         sense.set_pixels(unlocked)
         sock.send(bytes(messageButtonUnlocked, "UTF-8"))
         i = 0
-loop = asyncio.get_event_loop()
-open = asyncio.wait(button_click_open())
-lock = asyncio.wait(button_click_lock())
+        
+new_loop = asyncio.new_event_loop()
+open = Thread(target=button_click_open, args=(new_loop,))
+
+new_loop = asyncio.new_event_loop()
+lock = Thread(target=button_click_lock, args=(new_loop,))
 
 while True: 
   
   if (i == 0):
-    loop.run_until_complete(lock)
+    open.Start()
     #for event in sense.stick.get_events():
       #if event.action == "pressed":
         #pwm.ChangeDutyCycle(7)
@@ -97,7 +105,7 @@ while True:
       i = 1    
         
   if (i == 1):
-    loop.run_until_complete(open)
+    lock.Start()
     #for event in sense.stick.get_events():
       #if event.action == "pressed":
         #pwm.ChangeDutyCycle(12)
