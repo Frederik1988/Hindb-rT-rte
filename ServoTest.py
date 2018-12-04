@@ -71,11 +71,11 @@ while True:
         i = 1
       
         
-    if (message =='l'):
-      pwm.ChangeDutyCycle(7)
-      sense.set_pixels(locked)
-      sock.send(bytes(messageLocked, "UTF-8"))
-      i = 1    
+    #if (message =='l'):
+      #pwm.ChangeDutyCycle(7)
+      #sense.set_pixels(locked)
+      #sock.send(bytes(messageLocked, "UTF-8"))
+      #i = 1    
         
   if (i == 1):
     #data = sock.recv(1024)
@@ -89,8 +89,8 @@ while True:
         sock.send(bytes(messageButtonUnlocked, "UTF-8"))
         i = 0
      
-    if (message == 'o'):
-      pwm.ChangeDutyCycle(12)
-      sense.set_pixels(unlocked)
-      sock.send(bytes(messageUnlocked, "UTF-8"))
-      i = 0
+    #if (message == 'o'):
+      #pwm.ChangeDutyCycle(12)
+      #sense.set_pixels(unlocked)
+      #sock.send(bytes(messageUnlocked, "UTF-8"))
+      #i = 0
