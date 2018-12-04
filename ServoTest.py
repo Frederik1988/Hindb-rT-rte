@@ -55,20 +55,13 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 sense.set_pixels(unlocked)
 i = 0
-
-async def recieveMessage(loop):
-  while True:
-    data = sock.recv(1024)
-    message = data.decode('utf-8')
-    message = message [0: -2]    
-  
-loop = asyncio.get_event_loop()
-asyncio.ensure_future(recieveMessage(loop))
-loop.run_forever()
   
 
 while True: 
   if (i == 0):    
+    #data = sock.recv(1024)
+    #message = data.decode('utf-8')
+    #message = message [0: -2]   
     
     for event in sense.stick.get_events():
       if event.action == "pressed":
@@ -85,6 +78,9 @@ while True:
       i = 1    
         
   if (i == 1):
+    #data = sock.recv(1024)
+    #message = data.decode('utf-8')
+    #message = message [0: -2]   
             
     for event in sense.stick.get_events():
       if event.action == "pressed":
