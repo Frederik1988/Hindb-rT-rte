@@ -76,7 +76,7 @@ async def button_click_open():
 while True: 
   
   if (i == 0):
-    asyncio.run(button_click_lock())
+    asyncio.run_until_complete(button_click_lock())
     #for event in sense.stick.get_events():
       #if event.action == "pressed":
         #pwm.ChangeDutyCycle(7)
@@ -95,7 +95,7 @@ while True:
       i = 1    
         
   if (i == 1):
-    asyncio.run(button_click_open())
+    asyncio.run_until_complete(button_click_open())
     #for event in sense.stick.get_events():
       #if event.action == "pressed":
         #pwm.ChangeDutyCycle(12)
