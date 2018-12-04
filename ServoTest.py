@@ -71,14 +71,16 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 sense.set_pixels(unlocked)
 i = 0
-
+t = 1
 openBtn = Thread(target=button_click_open)
 lockBtn = Thread(target=button_click_lock)
 
 while True: 
   
   if (i == 0):
-    lockBtn.start()
+    if (t == 1):
+      lockBtn.start()
+      t = 2
     
     data = sock.recv(1024)
     message = data.decode('utf-8')
@@ -91,7 +93,9 @@ while True:
       i = 1    
         
   if (i == 1):
-    openBtn.start()
+    if (t == 2):
+      openBtn.start()
+      t = 3
         
     data = sock.recv(1024)
     message = data.decode('utf-8')
