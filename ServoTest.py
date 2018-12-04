@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
+import asyncio
 
 TCP_IP = "192.168.24.239"
 TCP_PORT = 9576
@@ -55,10 +56,27 @@ pwm.start(12)
 sense.set_pixels(unlocked)
 i = 0
 
+async def button_click_lock():
+    for event in sense.stick.get_events():
+      if event.action == "pressed":
+        pwm.ChangeDutyCycle(7)
+        sense.set_pixels(locked)
+        sock.send(bytes(messageButtonLocked, "UTF-8"))
+        i = 1
+        
+async def button_click_open():
+    for event in sense.stick.get_events():
+      if event.action == "pressed":
+        pwm.ChangeDutyCycle(12)
+        sense.set_pixels(unlocked)
+        sock.send(bytes(messageButtonUnlocked, "UTF-8"))
+        i = 0
+
 
 while True: 
   
   if (i == 0):
+    asyncio.run(button_click_lock())
     #for event in sense.stick.get_events():
       #if event.action == "pressed":
         #pwm.ChangeDutyCycle(7)
@@ -77,6 +95,7 @@ while True:
       i = 1    
         
   if (i == 1):
+    asyncio.run(button_click_open())
     #for event in sense.stick.get_events():
       #if event.action == "pressed":
         #pwm.ChangeDutyCycle(12)
