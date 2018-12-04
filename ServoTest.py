@@ -65,7 +65,7 @@ while True:
     
     if (message == 'kat'):
       sock.send(bytes(messageQuit "UTF-8"))
-      break;     
+      break    
         
     if (message =='l'):
       pwm.ChangeDutyCycle(7)
@@ -81,7 +81,7 @@ while True:
        
     if (message == 'kat'):
     sock.send(bytes(messageQuit "UTF-8"))
-    break;
+    break
         
     if (message == 'o'):
       pwm.ChangeDutyCycle(12)
