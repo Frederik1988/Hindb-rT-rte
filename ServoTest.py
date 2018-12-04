@@ -2,8 +2,6 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
-import asyncio
-from threading import Thread
 
 TCP_IP = "192.168.24.239"
 TCP_PORT = 9576
@@ -57,46 +55,20 @@ pwm.start(12)
 sense.set_pixels(unlocked)
 i = 0
 
-async def button_click_lock(loop):
-    asyncio.set_event_loop(loop)
-    loop.run_forever()
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
-        sock.send(bytes(messageButtonLocked, "UTF-8"))
-        i = 1
-        
-async def button_click_open(loop):
-    asyncio.set_event_loop(loop)
-    loop.run_forever()
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(12)
-        sense.set_pixels(unlocked)
-        sock.send(bytes(messageButtonUnlocked, "UTF-8"))
-        i = 0
-        
-new_loop = asyncio.new_event_loop()
-open = Thread(target=button_click_open, args=(new_loop,))
-
-new_loop = asyncio.new_event_loop()
-lock = Thread(target=button_click_lock, args=(new_loop,))
-
 while True: 
-  
+  data = sock.recv(1024)
+  message = data.decode('utf-8')
+  message = message [0: -2]  
+
   if (i == 0):
-    open.Start()
+    
     #for event in sense.stick.get_events():
       #if event.action == "pressed":
         #pwm.ChangeDutyCycle(7)
         #sense.set_pixels(locked)
         #sock.send(bytes(messageButtonLocked, "UTF-8"))
         #i = 1
-        
-    data = sock.recv(1024)
-    message = data.decode('utf-8')
-    message = message [0: -2]    
+      
         
     if (message =='l'):
       pwm.ChangeDutyCycle(7)
@@ -105,18 +77,14 @@ while True:
       i = 1    
         
   if (i == 1):
-    lock.Start()
+    
     #for event in sense.stick.get_events():
       #if event.action == "pressed":
         #pwm.ChangeDutyCycle(12)
         #sense.set_pixels(unlocked)
         #sock.send(bytes(messageButtonUnlocked, "UTF-8"))
         #i = 0
-        
-    data = sock.recv(1024)
-    message = data.decode('utf-8')
-    message = message [0: -2]   
-  
+     
     if (message == 'o'):
       pwm.ChangeDutyCycle(12)
       sense.set_pixels(unlocked)
