@@ -67,8 +67,8 @@ async def open(loop):
       
 async def lock(loop):
   while True:        
-    for event in sense.stick.get_events():
-        if event.action == "pressed":
+    for event in sense.stick.get_events():      
+      if event.action == "pressed":
         pwm.ChangeDutyCycle(7)
         sense.set_pixels(locked)
         sock.send(bytes(messageButtonLocked, "UTF-8"))
