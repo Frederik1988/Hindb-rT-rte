@@ -55,42 +55,57 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(12)
 sense.set_pixels(unlocked)
 i = 0
-  
 
-while True: 
-  if (i == 0):    
-    #data = sock.recv(1024)
-    #message = data.decode('utf-8')
-    #message = message [0: -2]   
-    
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
-        sock.send(bytes(messageButtonLocked, "UTF-8"))
-        i = 1
-      
-        
-    #if (message =='l'):
-      #pwm.ChangeDutyCycle(7)
-      #sense.set_pixels(locked)
-      #sock.send(bytes(messageLocked, "UTF-8"))
-      #i = 1    
-        
-  if (i == 1):
-    #data = sock.recv(1024)
-    #message = data.decode('utf-8')
-    #message = message [0: -2]   
-            
+async def open(loop):
+  while True:
     for event in sense.stick.get_events():
       if event.action == "pressed":
         pwm.ChangeDutyCycle(12)
         sense.set_pixels(unlocked)
         sock.send(bytes(messageButtonUnlocked, "UTF-8"))
-        i = 0
-     
-    #if (message == 'o'):
-      #pwm.ChangeDutyCycle(12)
-      #sense.set_pixels(unlocked)
-      #sock.send(bytes(messageUnlocked, "UTF-8"))
-      #i = 0
+        i = 0 
+      
+async def lock(loop):
+  while True:        
+    for event in sense.stick.get_events():
+        if event.action == "pressed":
+        pwm.ChangeDutyCycle(7)
+        sense.set_pixels(locked)
+        sock.send(bytes(messageButtonLocked, "UTF-8"))
+        i = 1
+    
+loop = asyncio.get_event_loop()
+asyncio.ensure_future(lock(loop))
+  
+loop = asyncio.get_event_loop()
+asyncio.ensure_future(open(loop))
+
+  
+
+while True: 
+  if (i == 0): 
+    loop.run_forever()
+    
+    data = sock.recv(1024)
+    message = data.decode('utf-8')
+    message = message [0: -2]         
+        
+    if (message =='l'):
+      pwm.ChangeDutyCycle(7)
+      sense.set_pixels(locked)
+      sock.send(bytes(messageLocked, "UTF-8"))
+      i = 1    
+        
+  if (i == 1):
+    
+    loop.run_forever()
+    
+    data = sock.recv(1024)
+    message = data.decode('utf-8')
+    message = message [0: -2]              
+        
+    if (message == 'o'):
+      pwm.ChangeDutyCycle(12)
+      sense.set_pixels(unlocked)
+      sock.send(bytes(messageUnlocked, "UTF-8"))
+      i = 0
