@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
-import asyncio
+
 
 TCP_IP = "192.168.24.239"
 TCP_PORT = 9576
@@ -56,38 +56,16 @@ pwm.start(12)
 sense.set_pixels(unlocked)
 i = 0
 
-async def open(loop):
-  while True:
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(12)
-        sense.set_pixels(unlocked)
-        sock.send(bytes(messageButtonUnlocked, "UTF-8"))
-        i = 0 
-      
-async def lock(loop):
-  while True:        
-    for event in sense.stick.get_events():      
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
-        sock.send(bytes(messageButtonLocked, "UTF-8"))
-        i = 1
-    
-loop = asyncio.get_event_loop()
-asyncio.ensure_future(lock(loop))
-  
-loop = asyncio.get_event_loop()
-asyncio.ensure_future(open(loop))
-loop.run_forever()
-  
-
 while True: 
   if (i == 0):     
     
     data = sock.recv(1024)
     message = data.decode('utf-8')
-    message = message [0: -2]         
+    message = message [0: -2] 
+    
+    if (message == 'kat'):
+      sock.send(bytes(messageQuit "UTF-8"))
+      break;     
         
     if (message =='l'):
       pwm.ChangeDutyCycle(7)
@@ -99,10 +77,40 @@ while True:
     
     data = sock.recv(1024)
     message = data.decode('utf-8')
-    message = message [0: -2]              
+    message = message [0: -2] 
+       
+    if (message == 'kat'):
+    sock.send(bytes(messageQuit "UTF-8"))
+    break;
         
     if (message == 'o'):
       pwm.ChangeDutyCycle(12)
       sense.set_pixels(unlocked)
       sock.send(bytes(messageUnlocked, "UTF-8"))
       i = 0
+
+while True:
+  
+  pwm.start(12)
+  sense.set_pixels(unlocked)
+  i = 0
+  if (i == 0):
+    for event in sense.stick.get_events():       
+      if event.action == "pressed":        
+        pwm.ChangeDutyCycle(7)
+        sense.set_pixels(locked)
+        sock.send(bytes(messageButtonLocked, "UTF-8"))
+        i = 1      
+    
+  if (i == 1):  
+                
+    for event in sense.stick.get_events():      
+      if event.action == "pressed":        
+        pwm.ChangeDutyCycle(12)
+        sense.set_pixels(unlocked)
+        sock.send(bytes(messageButtonUnlocked, "UTF-8"))
+        i = 0 
+      
+      
+      
+      
