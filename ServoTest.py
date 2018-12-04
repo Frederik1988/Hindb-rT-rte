@@ -71,12 +71,14 @@ async def button_click_open():
         sense.set_pixels(unlocked)
         sock.send(bytes(messageButtonUnlocked, "UTF-8"))
         i = 0
-
+loop = asyncio.get_event_loop()
+open = asyncio.wait(button_click_open())
+lock = asyncio.wait(button_click_lock())
 
 while True: 
   
   if (i == 0):
-    asyncio.run_until_complete(button_click_lock())
+    loop.run_until_complete(lock)
     #for event in sense.stick.get_events():
       #if event.action == "pressed":
         #pwm.ChangeDutyCycle(7)
@@ -95,7 +97,7 @@ while True:
       i = 1    
         
   if (i == 1):
-    asyncio.run_until_complete(button_click_open())
+    loop.run_until_complete(open)
     #for event in sense.stick.get_events():
       #if event.action == "pressed":
         #pwm.ChangeDutyCycle(12)
