@@ -52,6 +52,7 @@ i = 1
 
 def recieveMessage():
     
+    
   data = sock.recv(1024)
   message = data.decode('utf-8')
   message = message [0: -2]
@@ -70,7 +71,8 @@ def recieveMessage():
     i = 0
 
       
-def joystick():  
+def joystick(): 
+    
   
   if (i==0):
     for event in sense.stick.get_events():
@@ -88,8 +90,10 @@ def joystick():
         
 
 while True:
-    
-    th = Process(target=recieveMessage())
-    th.start()
+        
     th1=Process(target=joystick())
+    th = Process(target=recieveMessage())
+    
+    th.start()
+    time.sleep(1)
     th1.start()
