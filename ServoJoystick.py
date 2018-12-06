@@ -89,11 +89,10 @@ def joystick(i):
           pwm.ChangeDutyCycle(12)
           sense.set_pixels(unlocked)
           i = 0
-          
+        
+loop = asyncio.get_event_loop()         
 loop.run_until_complete(asyncio.gather(recieveMessage(), joystick(i)))
 
 #loop.run_until_complete(recieveMessage())
-
-#loop = asyncio.get_event_loop() 
 #cors = asyncio.wait([joystick(i), recieveMessage()])
 #loop.run_until_complete(cors)
