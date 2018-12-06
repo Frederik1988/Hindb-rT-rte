@@ -75,19 +75,22 @@ async def recieveMessage():
 
 async def joystick():
   
-  if (i==1):
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
-        i = 0
+  while True:
+  
+    if (i==1):
+      for event in sense.stick.get_events():
+        if event.action == "pressed":
+          pwm.ChangeDutyCycle(7)
+          sense.set_pixels(locked)
+          i = 0
         
-  if (i==0):
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(12)
-        sense.set_pixels(unlocked)
-        i = 1
+    if (i==0):
+      for event in sense.stick.get_events():
+        if event.action == "pressed":
+          pwm.ChangeDutyCycle(12)
+          sense.set_pixels(unlocked)
+          i = 1
+
   
 loop = asyncio.get_event_loop() 
 cors = asyncio.wait([recieveMessage(),joystick()])
