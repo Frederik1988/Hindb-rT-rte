@@ -70,8 +70,12 @@ async def recieveMessage():
       sense.set_pixels(unlocked)
       sock.send(bytes(messageUnlocked, "UTF-8"))
       i = 0
-    
+      
+loop = asyncio.get_event_loop() 
+loop.run_until_complete(loop)
+
 while True:
+  
   
   if (i==1):
       for event in sense.stick.get_events():
@@ -88,5 +92,4 @@ while True:
         i = 1
   
   
-loop = asyncio.get_event_loop() 
-loop.run_until_complete(loop)
+
