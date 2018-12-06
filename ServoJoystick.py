@@ -56,9 +56,9 @@ async def recieveMessage():
   while True:
     
     data = sock.recv(1024)
-    await data
     loop.create_task(message = data.decode('utf-8'))
-    message = message [0: -2] 
+    message = message [0: -2]
+    await message
   
     if (message =='l'):
       pwm.ChangeDutyCycle(7)
