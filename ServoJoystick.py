@@ -53,7 +53,7 @@ i = 1
 
 def recieveMessage():
   
-  await asyncio.sleep(1)
+  await asyncio.sleep(0)
   
   while True:    
     
@@ -76,7 +76,7 @@ def recieveMessage():
       
 def joystick(i):
   
-  await asyncio.sleep(1)
+  await asyncio.sleep(0)
 
   while True:         
         
