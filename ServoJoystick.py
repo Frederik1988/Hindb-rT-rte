@@ -90,9 +90,7 @@ def joystick(i):
           sense.set_pixels(unlocked)
           i = 0
         
-loop = asyncio.get_event_loop()         
-loop.run_until_complete(asyncio.gather(recieveMessage(), joystick(i)))
 
-#loop.run_until_complete(recieveMessage())
-#cors = asyncio.wait([joystick(i), recieveMessage()])
-#loop.run_until_complete(cors)
+loop.run_until_complete(recieveMessage())
+cors = asyncio.wait([joystick(i), recieveMessage()])
+loop.run_until_complete(cors)
