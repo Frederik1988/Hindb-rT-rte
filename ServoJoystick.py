@@ -71,11 +71,12 @@ async def recieveMessage():
       sock.send(bytes(messageUnlocked, "UTF-8"))
       i = 0
       
-loop = asyncio.get_event_loop() 
-loop.run_until_complete(recieveMessage())
+
 
 while True:
   
+  loop = asyncio.get_event_loop() 
+  loop.run_until_complete(recieveMessage())
   
   if (i==1):
       for event in sense.stick.get_events():
