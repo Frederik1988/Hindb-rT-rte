@@ -92,7 +92,9 @@ async def joystick(i):
           
 loop = asyncio.get_event_loop() 
 #cors = asyncio.wait([, ])
-loop.run_until_complete(joystick(i))  
-loop.run_until_complete(recieveMessage())
+while True:
+  
+  loop.run_until_complete(joystick(i))  
+  loop.run_until_complete(recieveMessage())
  
 
