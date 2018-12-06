@@ -86,5 +86,9 @@ def joystick(i):
         sense.set_pixels(unlocked)
         i = 0
         
-
-
+processes = [
+  recieveMessage,
+  joystick  		
+	]
+for process in processes:
+  Process(target=process).start()
