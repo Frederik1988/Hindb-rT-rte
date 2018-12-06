@@ -58,8 +58,7 @@ async def recieveMessage():
     data = sock.recv(1024)
     message = data.decode('utf-8')
     message = message [0: -2]
-    await message
-  
+      
     if (message =='l'):
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
