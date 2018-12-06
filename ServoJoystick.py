@@ -58,6 +58,7 @@ async def recieveMessage():
     data = await sock.recv(1024)
     message = data.decode('utf-8')
     message = message [0: -2] 
+    await asyncio.sleep(1)
   
     if (message =='l'):
       pwm.ChangeDutyCycle(7)
@@ -74,6 +75,7 @@ async def recieveMessage():
 
 
 async def joystick(i):
+  await asyncio.sleep(1)
   
   if (i==0):
     for event in sense.stick.get_events():
