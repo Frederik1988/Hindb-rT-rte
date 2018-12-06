@@ -55,7 +55,7 @@ async def recieveMessage():
   
   while True:
     
-    data = await sock.recv(1024)
+    data = sock.recv(1024)
     loop.create_task(message = data.decode('utf-8'))
     message = message [0: -2] 
   
