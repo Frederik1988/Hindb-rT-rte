@@ -89,7 +89,7 @@ def joystick(i):
 
 while True:
     
-    th = Thread(target=recieveMessage())
+    th = Process(target=recieveMessage())
     th.start()
-    th1=Thread(target=joystick(i))
+    th1=Process(target=joystick(i))
     th1.start()
