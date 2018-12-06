@@ -70,7 +70,7 @@ def recieveMessage():
     i = 0
 
       
-def joystick(i):  
+def joystick():  
   
   if (i==0):
     for event in sense.stick.get_events():
@@ -91,5 +91,5 @@ while True:
     
     th = Process(target=recieveMessage())
     th.start()
-    th1=Process(target=joystick(i))
+    th1=Process(target=joystick())
     th1.start()
