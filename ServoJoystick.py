@@ -68,22 +68,14 @@ async def recieveMessage():
       pwm.ChangeDutyCycle(12)
       sense.set_pixels(unlocked)
       sock.send(bytes(messageUnlocked, "UTF-8"))   
-
-
+ 
 while True:
-  
   
   loop = asyncio.get_event_loop() 
   loop.run_until_complete(recieveMessage())
   
   
-   for event in sense.stick.get_events():
-     if event.action == "pressed":
-       pwm.ChangeDutyCycle(12)
-       sense.set_pixels(unlocked)
-         
-        
-  
-  
-  
-
+  for event in sense.stick.get_events():
+   if event.action == "pressed":
+     pwm.ChangeDutyCycle(12)
+     sense.set_pixels(unlocked)
