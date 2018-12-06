@@ -73,7 +73,7 @@ async def recieveMessage():
   
 
 
-async def joystick(i):
+async def joystick():
   
   if (i==1):
     for event in sense.stick.get_events():
