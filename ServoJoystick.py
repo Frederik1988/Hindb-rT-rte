@@ -2,7 +2,6 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
-import asyncio
 from multiprocessing import Process
 
 
@@ -52,7 +51,7 @@ pwm.start(7)
 sense.set_pixels(locked)
 i = 1
 
-async def recieveMessage():
+def recieveMessage():
   
   while True:
     
@@ -73,7 +72,7 @@ async def recieveMessage():
       sock.send(bytes(messageUnlocked, "UTF-8"))  
       i = 0
       
-async def joystick(i):
+def joystick(i):
 
   while True:     
     
