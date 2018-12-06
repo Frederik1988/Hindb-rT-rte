@@ -91,7 +91,7 @@ async def joystick():
           i = 0
           
 loop = asyncio.get_event_loop() 
-cors = asyncio.wait([joystick(), recieveMessage()])
-loop.run_until_complete(cors)        
+#cors = asyncio.wait([joystick(), recieveMessage()])
+loop.run_until_complete(joystick())        
  
 
