@@ -3,6 +3,7 @@ import time
 from sense_hat import SenseHat
 import socket
 import asyncio
+from multiprocessing import Process
 
 
 TCP_IP = "192.168.24.239"
@@ -90,9 +91,17 @@ async def joystick(i):
           sense.set_pixels(unlocked)
           i = 0
           
+p1 = Process(target=joystick(i))
+p2 = Process(target=recieveMessage())
+
+ps.start
+p1.start
+
+p2.join
+p1.join
 
 #loop.run_until_complete(recieveMessage())
 
-loop = asyncio.get_event_loop() 
-cors = asyncio.wait([joystick(i), recieveMessage()])
-loop.run_until_complete(cors)
+#loop = asyncio.get_event_loop() 
+#cors = asyncio.wait([joystick(i), recieveMessage()])
+#loop.run_until_complete(cors)
