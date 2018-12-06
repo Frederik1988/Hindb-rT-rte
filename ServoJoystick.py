@@ -79,8 +79,8 @@ while True:
   
    for event in sense.stick.get_events():
      if event.action == "pressed":
-       pwm.ChangeDutyCycle(7)
-       sense.set_pixels(locked)
+       pwm.ChangeDutyCycle(12)
+       sense.set_pixels(unlocked)
          
         
   
