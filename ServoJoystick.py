@@ -2,7 +2,6 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
-from multiprocessing import Process
 
 TCP_IP = "192.168.24.239"
 TCP_PORT = 9576
@@ -73,14 +72,14 @@ def recieveMessage():
 
       
 def joystick(i): 
-  if (i==0):
+  if (i == 0):
     for event in sense.stick.get_events():
       if event.action == "pressed":
         pwm.ChangeDutyCycle(7)
         sense.set_pixels(locked)
         i = 1
         
-  if (i==1):
+  if (i == 1):
     for event in sense.stick.get_events():
       if event.action == "pressed":
         pwm.ChangeDutyCycle(12)
@@ -88,11 +87,4 @@ def joystick(i):
         i = 0
         
 
-while True:
-        
-    th = Process(target=joystick(i))
-    th = Process(target=recieveMessage())
-    
-    th.start()
-    time.sleep(1)
-    th1.start()
+
