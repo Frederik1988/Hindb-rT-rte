@@ -2,8 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
-from threading import Thread
-
+from multiprocessing import Process
 
 TCP_IP = "192.168.24.239"
 TCP_PORT = 9576
@@ -87,13 +86,6 @@ def joystick(i):
         sense.set_pixels(unlocked)
         i = 0
         
-
-
-#loop.run_until_complete(recieveMessage())
-
-#loop = asyncio.get_event_loop()
-#cors = asyncio.wait([joystick(i), recieveMessage()])
-#loop.run_until_complete(cors)
 
 while True:
     
