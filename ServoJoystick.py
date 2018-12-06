@@ -2,7 +2,6 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
-from multiprocessing import Process
 import asyncio
 
 
@@ -95,14 +94,7 @@ def joystick(i):
           sense.set_pixels(unlocked)
           i = 0
           
-p1 = Process(target=joystick(i))
-p2 = Process(target=recieveMessage())
-
-p2.start
-p1.start
-
-p2.join
-p1.join
+loop.run_until_complete(asyncio.gather(recieveMessage(), joystick(i)))
 
 #loop.run_until_complete(recieveMessage())
 
