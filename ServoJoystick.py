@@ -72,7 +72,7 @@ async def recieveMessage():
       i = 0
       
 loop = asyncio.get_event_loop() 
-loop.run_until_complete(loop)
+loop.run_until_complete(recieveMessage())
 
 while True:
   
