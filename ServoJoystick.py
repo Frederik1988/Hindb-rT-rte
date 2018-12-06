@@ -72,7 +72,7 @@ async def recieveMessage():
       sock.send(bytes(messageUnlocked, "UTF-8"))  
       i = 0
       
-async def joystick(1):
+async def joystick(i):
   
   while True:
     
@@ -92,6 +92,6 @@ async def joystick(1):
           
 loop = asyncio.get_event_loop() 
 #cors = asyncio.wait([joystick(), recieveMessage()])
-loop.run_until_complete(joystick(1))        
+loop.run_until_complete(joystick(i))        
  
 
