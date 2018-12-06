@@ -90,7 +90,7 @@ def joystick(1):
 
 while True:
         
-    th1=Process(target=joystick(1))
+    th = Process(target=joystick(1))
     th = Process(target=recieveMessage())
     
     th.start()
