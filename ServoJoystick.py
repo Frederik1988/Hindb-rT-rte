@@ -55,6 +55,8 @@ def recieveMessage():
   
   while True:
     
+    await asyncio.sleep(1)
+    
     data = sock.recv(1024)
     message = data.decode('utf-8')
     message = message [0: -2]
@@ -75,6 +77,8 @@ def recieveMessage():
 def joystick(i):
 
   while True:     
+    
+    await asyncio.sleep(1)
     
     if (i==0):
       for event in sense.stick.get_events():
