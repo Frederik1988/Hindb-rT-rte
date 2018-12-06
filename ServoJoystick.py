@@ -51,7 +51,7 @@ pwm.start(7)
 sense.set_pixels(locked)
 i = 1
 
-def recieveMessage()
+def recieveMessage():
     
   data = sock.recv(1024)
   message = data.decode('utf-8')
