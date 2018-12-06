@@ -3,6 +3,7 @@ import time
 from sense_hat import SenseHat
 import socket
 from multiprocessing import Process
+import asyncio
 
 
 TCP_IP = "192.168.24.239"
