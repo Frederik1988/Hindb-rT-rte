@@ -97,6 +97,8 @@ def joystick(i):
 #cors = asyncio.wait([joystick(i), recieveMessage()])
 #loop.run_until_complete(cors)
 
-if __name__ == '__main__':
-    Thread(target = joystick(i)).start()
-    Thread(target = recieveMessage()).start()
+
+rm = Thread(target = joystick(i))
+rm.start()
+js= Thread(target = recieveMessage())
+js.start()
