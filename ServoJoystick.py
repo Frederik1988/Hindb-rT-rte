@@ -94,7 +94,7 @@ async def joystick(i):
 p1 = Process(target=joystick(i))
 p2 = Process(target=recieveMessage())
 
-ps.start
+p2.start
 p1.start
 
 p2.join
