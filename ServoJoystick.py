@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
-import asyncio
+from threading import Thread
 
 
 TCP_IP = "192.168.24.239"
@@ -93,6 +93,10 @@ def joystick(i):
 
 #loop.run_until_complete(recieveMessage())
 
-loop = asyncio.get_event_loop()
-cors = asyncio.wait([joystick(i), recieveMessage()])
-loop.run_until_complete(cors)
+#loop = asyncio.get_event_loop()
+#cors = asyncio.wait([joystick(i), recieveMessage()])
+#loop.run_until_complete(cors)
+
+if __name__ == '__main__':
+    Thread(target = joystick(i)).start()
+    Thread(target = recieveMessage()).start()
