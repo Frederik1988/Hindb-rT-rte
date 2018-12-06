@@ -51,10 +51,8 @@ pwm.start(7)
 sense.set_pixels(locked)
 i = 1
 
-def recieveMessage():
-  
-  await asyncio.sleep(0)
-  
+def recieveMessage():  
+    
   while True:    
     
     data = sock.recv(1024)
@@ -74,10 +72,8 @@ def recieveMessage():
       sock.send(bytes(messageUnlocked, "UTF-8"))  
       i = 0
       
-def joystick(i):
+def joystick(i):  
   
-  await asyncio.sleep(0)
-
   while True:         
         
     if (i==0):
