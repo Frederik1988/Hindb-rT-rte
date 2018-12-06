@@ -74,9 +74,8 @@ async def recieveMessage():
       
 async def joystick(i):
 
-  while True:
+  while True: 
     
-    loop = asyncio.get_event_loop()
     loop.create_task(recieveMessage())
     
     if (i==0):
