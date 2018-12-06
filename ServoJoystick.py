@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from sense_hat import SenseHat
 import socket
+import asyncio
 
 
 TCP_IP = "192.168.24.239"
@@ -49,20 +50,44 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
 
-
-while True: 
+async def recieveMessage():
   
-  data = sock.recv(1024)
-  message = data.decode('utf-8')
-  message = message [0: -2] 
-        
-  if (message =='l'):
-    pwm.ChangeDutyCycle(7)
-    sense.set_pixels(locked)
-    sock.send(bytes(messageLocked, "UTF-8"))
-
-  if (message == 'o'):    
-    pwm.ChangeDutyCycle(12)
-    sense.set_pixels(unlocked)
-    sock.send(bytes(messageUnlocked, "UTF-8"))
+  while True:
     
+    data = await sock.recv(1024)
+    loop.create_task(message = data.decode('utf-8'))
+    message = message [0: -2] 
+  
+    if (message =='l'):
+      pwm.ChangeDutyCycle(7)
+      sense.set_pixels(locked)
+      sock.send(bytes(messageLocked, "UTF-8"))
+      i = 1   
+
+    if (message == 'o'):    
+      pwm.ChangeDutyCycle(12)
+      sense.set_pixels(unlocked)
+      sock.send(bytes(messageUnlocked, "UTF-8"))
+      i = 0
+  
+
+
+async def joystick(i):
+  
+  if (i==0):
+    for event in sense.stick.get_events():
+      if event.action == "pressed":
+        pwm.ChangeDutyCycle(7)
+        sense.set_pixels(locked)
+        i = 1
+        
+  if (i==1):
+    for event in sense.stick.get_events():
+      if event.action == "pressed":
+        pwm.ChangeDutyCycle(12)
+        sense.set_pixels(unlocked)
+        i = 0
+  
+loop = asyncio.get_event_loop() 
+cors = asyncio.wait([recieveMessage(),joystick(i)])
+loop.un_until_complete(cors)
