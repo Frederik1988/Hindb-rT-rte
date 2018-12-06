@@ -70,14 +70,10 @@ async def recieveMessage():
       sense.set_pixels(unlocked)
       sock.send(bytes(messageUnlocked, "UTF-8"))
       i = 0
+    
+while True:
   
-
-
-async def joystick():
-  
-  while True:
-  
-    if (i==1):
+  if (i==1):
       for event in sense.stick.get_events():
         if event.action == "pressed":
           pwm.ChangeDutyCycle(7)
@@ -90,8 +86,7 @@ async def joystick():
           pwm.ChangeDutyCycle(12)
           sense.set_pixels(unlocked)
           i = 1
-
+  
   
 loop = asyncio.get_event_loop() 
-cors = asyncio.wait([recieveMessage(),joystick()])
-loop.run_until_complete(cors)
+loop.run_until_complete(loop)
