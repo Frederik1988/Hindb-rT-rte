@@ -89,7 +89,7 @@ def joystick(i):
         
 processes = [
   recieveMessage,
-  joystick  		
+  joystick(i)  		
 	]
 for process in processes:
   Process(target=process).start()
