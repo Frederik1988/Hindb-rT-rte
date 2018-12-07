@@ -94,6 +94,14 @@ def recieveMessage():
       sense.set_pixels(unlocked)  
       sock.send(bytes(messageUnlocked, "UTF-8"))  
       i = 0
+    
+    if (message == "j"):
+      
+      pwm.ChangeDutyCycle(7)
+      sense.set_pixels(locked)
+      sock.send(bytes(messageLocked, "UTF-8"))
+      i = 1
+      
 
         
 if __name__ == "__main__":
