@@ -52,40 +52,46 @@ sense.set_pixels(locked)
 
 
 def joystick(i): 
-  if (i == 0):
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
-        i = 1
+  
+  while True:
+    
+    if (i == 0):
+      for event in sense.stick.get_events():
+        if event.action == "pressed":
+          pwm.ChangeDutyCycle(7)
+          sense.set_pixels(locked)
+          i = 1
         
-  if (i == 1):
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(12)
-        sense.set_pixels(unlocked)
-        i = 0
+    if (i == 1):
+      for event in sense.stick.get_events():
+        if event.action == "pressed":
+          pwm.ChangeDutyCycle(12)
+          sense.set_pixels(unlocked)
+          i = 0
 
 def recieveMessage():
   
-  data = sock.recv(1024)
-  message = data.decode('utf-8')
-  message = message [0: -2]
-      
-  if (message =='l'):
+  while True:
     
-    pwm.ChangeDutyCycle(7)
-    sense.set_pixels(locked)
-    sock.send(bytes(messageLocked, "UTF-8"))
-    i = 1
+  
+    data = sock.recv(1024)
+    message = data.decode('utf-8')
+    message = message [0: -2]
+      
+    if (message =='l'):
+    
+      pwm.ChangeDutyCycle(7)
+      sense.set_pixels(locked)
+      sock.send(bytes(messageLocked, "UTF-8"))
+      i = 1
       
 
-  if (message == 'o'):  
-    
-    pwm.ChangeDutyCycle(12)
-    sense.set_pixels(unlocked)
-    sock.send(bytes(messageUnlocked, "UTF-8"))  
-    i = 0
+    if (message == 'o'):  
+      
+      pwm.ChangeDutyCycle(12)
+      sense.set_pixels(unlocked)  
+      sock.send(bytes(messageUnlocked, "UTF-8"))  
+      i = 0
 
         
 if __name__ == "__main__":
