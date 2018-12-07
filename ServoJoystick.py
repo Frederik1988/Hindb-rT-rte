@@ -89,7 +89,7 @@ def recieveMessage():
       
 	
 thread1 = threading.Thread(target=recieveMessage)
-thread2 = threading.Thread(target=joystick
+thread2 = threading.Thread(target=joystick)
 			  
 thread1.start()
 thread2.start()
