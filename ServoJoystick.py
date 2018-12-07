@@ -52,24 +52,18 @@ pwm.start(7)
 sense.set_pixels(locked)
 
 
-def joystick(i): 
+def joystick(): 
   
   while True:
-    
-    if (i == 0):
-      for event in sense.stick.get_events():
-        if event.action == "pressed":
-          pwm.ChangeDutyCycle(7)
-          sense.set_pixels(locked)
-          i = 1
-        
-    if (i == 1):
-      for event in sense.stick.get_events():
-        if event.action == "pressed":
-          pwm.ChangeDutyCycle(12)
-          sense.set_pixels(unlocked)
-          sock.send(bytes(messageUnlockedJoystick, "UTF-8"))
-          i = 0
+
+    for event in sense.stick.get_events():
+      if event.action == "pressed":
+        pwm.ChangeDutyCycle(12)
+        sense.set_pixels(unlocked)
+        sock.send(bytes(messageUnlockedJoystick, "UTF-8"))
+        time.sleep(5)
+        pwm.ChangeDutyCycle(7)
+        sense.set_pixels(locked)
 
 def recieveMessage():
   
@@ -85,7 +79,6 @@ def recieveMessage():
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
       sock.send(bytes(messageLocked, "UTF-8"))
-      i = 1
       
 
     if (message == 'o'):  
@@ -93,22 +86,10 @@ def recieveMessage():
       pwm.ChangeDutyCycle(12)
       sense.set_pixels(unlocked)  
       sock.send(bytes(messageUnlocked, "UTF-8"))  
-      i = 0
-    
-    if (message == "j"):
       
-      pwm.ChangeDutyCycle(7)
-      sense.set_pixels(locked)
-      sock.send(bytes(messageLocked, "UTF-8"))
-      i = 1
-      
-
-        
-if __name__ == "__main__":
-	i = 1
 	
 thread1 = threading.Thread(target=recieveMessage)
-thread2 = threading.Thread(target=joystick, args=(i,))
+thread2 = threading.Thread(target=joystick
 			  
 thread1.start()
 thread2.start()
