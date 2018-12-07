@@ -67,8 +67,10 @@ def joystick(i):
         if event.action == "pressed":
           pwm.ChangeDutyCycle(12)
           sense.set_pixels(unlocked)
-          sock.send(bytes(messageJoystick, "UTF-8"))
-          i = 0
+          time.sleep(5)
+          pwm.ChangeDutyCycle(7)
+          sense.set_pixels(locked)
+          i = 1
 
 def recieveMessage():
   
