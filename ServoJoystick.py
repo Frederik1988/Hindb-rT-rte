@@ -88,7 +88,7 @@ def recieveMessage():
     i = 0
 
         
-if __name__ = "__main__":
+if __name__ == "__main__":
 	i = 1
 	
 thread1 = threading.Thread(target=recieveMessage)
