@@ -15,8 +15,6 @@ messageLocked = "The door is locked"
 
 messageUnlocked = "The door is unlocked"
 
-messageJoystick = "b"
-
 sense = SenseHat()
 
 g = (0,255,0)
@@ -51,17 +49,24 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
 
-def joystick(): 
+
+def joystick(i): 
   
   while True:
-  
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(12)
-        sense.set_pixels(unlocked)
-        time.sleep(5)
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
+    
+    if (i == 0):
+      for event in sense.stick.get_events():
+        if event.action == "pressed":
+          pwm.ChangeDutyCycle(7)
+          sense.set_pixels(locked)
+          i = 1
+        
+    if (i == 1):
+      for event in sense.stick.get_events():
+        if event.action == "pressed":
+          pwm.ChangeDutyCycle(12)
+          sense.set_pixels(unlocked)
+          i = 0
 
 def recieveMessage():
   
@@ -76,17 +81,23 @@ def recieveMessage():
     
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
-      sock.send(bytes(messageLocked, "UTF-8"))      
+      sock.send(bytes(messageLocked, "UTF-8"))
+      i = 1
+      
 
     if (message == 'o'):  
       
       pwm.ChangeDutyCycle(12)
       sense.set_pixels(unlocked)  
-      sock.send(bytes(messageUnlocked, "UTF-8"))          
+      sock.send(bytes(messageUnlocked, "UTF-8"))  
+      i = 0
 
+        
+if __name__ == "__main__":
+	i = 1
 	
 thread1 = threading.Thread(target=recieveMessage)
-thread2 = threading.Thread(target=joystick)
+thread2 = threading.Thread(target=joystick, args=(i,))
 			  
 thread1.start()
 thread2.start()
