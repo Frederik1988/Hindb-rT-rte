@@ -3,7 +3,7 @@ import time
 from sense_hat import SenseHat
 import socket
 
-TCP_IP = "192.168.1.99"
+TCP_IP = "192.168.1.233"
 TCP_PORT = 9576
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
