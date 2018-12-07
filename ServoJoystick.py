@@ -3,6 +3,7 @@ import time
 from sense_hat import SenseHat
 import socket
 from multiprocessing import Process
+from threading import Thread
 
 TCP_IP = "192.168.1.233"
 TCP_PORT = 9576
@@ -48,7 +49,22 @@ GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
-i = 1
+
+
+def joystick(i): 
+  if (i == 0):
+    for event in sense.stick.get_events():
+      if event.action == "pressed":
+        pwm.ChangeDutyCycle(7)
+        sense.set_pixels(locked)
+        i = 1
+        
+  if (i == 1):
+    for event in sense.stick.get_events():
+      if event.action == "pressed":
+        pwm.ChangeDutyCycle(12)
+        sense.set_pixels(unlocked)
+        i = 0
 
 def recieveMessage():
   
@@ -71,25 +87,15 @@ def recieveMessage():
     sock.send(bytes(messageUnlocked, "UTF-8"))  
     i = 0
 
-      
-def joystick(i): 
-  if (i == 0):
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(7)
-        sense.set_pixels(locked)
-        i = 1
         
-  if (i == 1):
-    for event in sense.stick.get_events():
-      if event.action == "pressed":
-        pwm.ChangeDutyCycle(12)
-        sense.set_pixels(unlocked)
-        i = 0
-        
-processes = [
-  recieveMessage,
-  joystick(i)  		
-	]
-for process in processes:
-  Process(target=process).start()
+if __name__ = "__main__":
+	i = 1
+	
+thread1 = threading.Thread(target=recieveMessage)
+thread2 = threadig.Thread(target=joystick, args=(i,)
+			  
+thread1.start()
+thread2.start()
+
+thread1.join()
+thread2.join()
