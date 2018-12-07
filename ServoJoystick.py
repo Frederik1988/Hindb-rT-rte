@@ -51,7 +51,6 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
 
-
 def joystick(i): 
   
   while True:
@@ -68,7 +67,7 @@ def joystick(i):
         if event.action == "pressed":
           pwm.ChangeDutyCycle(12)
           sense.set_pixels(unlocked)
-	  sock.send(bytes(messageJoystick, "UTF-8"))
+	        sock.send(bytes(messageJoystick, "UTF-8"))
           i = 0
 
 def recieveMessage():
