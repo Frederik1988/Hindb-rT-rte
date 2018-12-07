@@ -15,8 +15,6 @@ messageLocked = "The door is locked"
 
 messageUnlocked = "The door is unlocked"
 
-messageUnlockedJoystick = "b"
-
 sense = SenseHat()
 
 g = (0,255,0)
@@ -60,7 +58,6 @@ def joystick():
       if event.action == "pressed":
         pwm.ChangeDutyCycle(12)
         sense.set_pixels(unlocked)
-        sock.send(bytes(messageUnlockedJoystick, "UTF-8"))
         time.sleep(5)
         pwm.ChangeDutyCycle(7)
         sense.set_pixels(locked)
