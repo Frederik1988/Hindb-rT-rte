@@ -68,7 +68,7 @@ def recieveMessage():
   
     data = sock.recv(1024)
     fromServer = data.decode('utf-8')
-    message =  fromServer [0 : -(len(fromServer)-2)]
+    message =  fromServer [0 : -len(fromServer) -2]
     #name = fromServer [1: (len(fromServer) -2)]
     print(message)
           
