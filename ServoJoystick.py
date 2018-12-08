@@ -64,20 +64,19 @@ def joystick():
 
 def recieveMessage():
   
-  while True:
-    
+  while True:    
   
     data = sock.recv(1024)
     fromServer = data.decode('utf-8')
     message =  fromServer [0 : -2]
-    name = fromServer [1: (len(fromServer) -2)]
+    #name = fromServer [1: (len(fromServer) -2)]
           
     if (message =='l'):
     
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
       sock.send(bytes(messageLocked, "UTF-8"))
-      sense.show_message(name, scroll_speed=0.10, text_colour=[0, 0, 255])
+      #sense.show_message(name, scroll_speed=0.10, text_colour=[0, 0, 255])
       
 
     if (message == 'o'):  
