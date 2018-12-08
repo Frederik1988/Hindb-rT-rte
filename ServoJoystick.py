@@ -70,6 +70,7 @@ def recieveMessage():
     fromServer = data.decode('utf-8')
     message =  fromServer [0 : -(len(fromServer)-2)]
     #name = fromServer [1: (len(fromServer) -2)]
+    print(message)
           
     if (message =='l'):
     
