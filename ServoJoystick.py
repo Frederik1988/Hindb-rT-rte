@@ -77,15 +77,13 @@ def recieveMessage():
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
       sock.send(bytes(messageLocked, "UTF-8"))
-      sense.show_message(str(name), scroll_speed=0.10, text_colour=[0, 0, 255])
       
-
     if (message == 'o'):  
       
       pwm.ChangeDutyCycle(12)
       sense.set_pixels(unlocked)  
       sock.send(bytes(messageUnlocked, "UTF-8"))
-      
+      sense.show_message(str(name), scroll_speed=0.10, text_colour=[0, 0, 255])
 	
 thread1 = threading.Thread(target=recieveMessage)
 thread2 = threading.Thread(target=joystick)
