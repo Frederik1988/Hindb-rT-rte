@@ -77,7 +77,7 @@ def recieveMessage():
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
       sock.send(bytes(messageLocked, "UTF-8"))
-      sense.show_message(name, scroll_speed=0.10, text_colour=[0, 0, 255])
+      sense.show_message(str(name), scroll_speed=0.10, text_colour=[0, 0, 255])
       
 
     if (message == 'o'):  
