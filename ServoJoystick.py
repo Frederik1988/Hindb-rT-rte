@@ -71,13 +71,14 @@ def recieveMessage():
     fromServer = data.decode('utf-8')
     message =  fromServer [0 : -2]
     name = fromServer [1: (len(fromServer) -2)]
+    msg = "VELKOMMEN HJEM " + name
       
     if (message =='l'):
     
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
       sock.send(bytes(messageLocked, "UTF-8"))
-      sense.show_message("%.1f VELKOMMEN HJEM" % name, scroll_speed=0.10, text_colour=[0, 0, 255])
+      sense.show_message(msg, scroll_speed=0.10, text_colour=[0, 0, 255])
       
 
     if (message == 'o'):  
