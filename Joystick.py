@@ -71,7 +71,7 @@ def joystick():
         if event.action == "pressed":
           pwm.ChangeDutyCycle(12)
           sock.send(bytes(messageJoystickUnlock, "UTF-8"))
-          sense.show_message(str(" HA EN DEJLIG DAG"), scroll_speed=0.04, text_colour=[0, 0, 255])
+          sense.show_message(str("HA EN DEJLIG DAG"), scroll_speed=0.04, text_colour=[0, 0, 255])
           sense.set_pixels(unlocked)
           i = 0
     
@@ -80,7 +80,6 @@ def joystick():
         if event.action == "pressed":
           pwm.ChangeDutyCycle(7)
           sock.send(bytes(messageJoystickLock, "UTF-8"))
-          sense.show_message(str(" VELKOMMEN HJEM "), scroll_speed=0.04, text_colour=[0, 0, 255])
           sense.set_pixels(locked)
           i = 1
           
@@ -113,7 +112,7 @@ def recieveMessage():
       
       pwm.ChangeDutyCycle(12)        
       sock.send(bytes(messageUnlocked, "UTF-8"))
-      sense.show_message(str(" VELKOMMEN HJEM " + name), scroll_speed=0.04, text_colour=[0, 0, 255])
+      sense.show_message(str("VELKOMMEN HJEM " + name), scroll_speed=0.04, text_colour=[0, 0, 255])
       sense.set_pixels(unlocked)
       i = 0
       lock.acquire()
