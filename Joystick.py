@@ -76,7 +76,7 @@ def joystick(i):
           i = 1
           
 
-def recieveMessage():
+def recieveMessage(i):
   
   while True:    
   
@@ -98,13 +98,14 @@ def recieveMessage():
       pwm.ChangeDutyCycle(12)        
       sock.send(bytes(messageUnlocked, "UTF-8"))
       sense.show_message(str("VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255])
-      sense.set_pixels(unlocked)
       i = 0
+      sense.set_pixels(unlocked)
+      
       
 if __name__ == "__main__":
 	i = 1
 
-thread1 = threading.Thread(target=recieveMessage)
+thread1 = threading.Thread(target=recieveMessage, args=(i,))
 thread2 = threading.Thread(target=joystick, args=(i,))
 			  
 thread1.start()
