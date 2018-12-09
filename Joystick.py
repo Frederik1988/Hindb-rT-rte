@@ -104,7 +104,7 @@ def recieveMessage():
       
 
 if __name__ == "__main__":
-	i = 1
+	i = 0
 	
 thread1 = threading.Thread(target=recieveMessage)
 thread2 = threading.Thread(target=joystick, args=(i,))
