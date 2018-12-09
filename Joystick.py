@@ -52,11 +52,17 @@ GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
+lock = Lock()
 i = 1
 
 def joystick(i): 
   
+  
   while True:
+    
+    global i
+    lock.acquire()
+    lock.release()
     
     if (i ==1):
       
@@ -85,6 +91,9 @@ def recieveMessage(i):
     fromServer = data.decode('utf-8')
     message =  fromServer [0 : 1 -len(fromServer)]
     name = fromServer [1 : len(fromServer)-2]
+    global i
+    lock.acquire()
+    lock.release()
   
           
     if (message =='l'):
