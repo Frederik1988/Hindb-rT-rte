@@ -3,6 +3,7 @@ import time
 from sense_hat import SenseHat
 import socket
 import threading
+from threading import Lock, Thread
 
 TCP_IP = "192.168.1.233"
 TCP_PORT = 9576
