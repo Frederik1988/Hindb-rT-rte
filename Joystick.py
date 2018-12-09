@@ -62,7 +62,6 @@ def joystick():
   
   while True:
     
-    
     lock.acquire()
     lock.release()
     
@@ -96,25 +95,29 @@ def recieveMessage():
     message =  fromServer [0 : 1 -len(fromServer)]
     name = fromServer [1 : len(fromServer)-2]
     
-    lock.acquire()
-    lock.release()
+    
   
           
     if (message =='l'):
       
-      i = 1
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
       sock.send(bytes(messageLocked, "UTF-8"))
+      i = 1
+      lock.acquire()
+      lock.release()
       
       
     if (message == 'o'):  
       
-      i = 0
       pwm.ChangeDutyCycle(12)        
       sock.send(bytes(messageUnlocked, "UTF-8"))
       sense.show_message(str("VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255])
       sense.set_pixels(unlocked)
+      i = 0
+      lock.acquire()
+      lock.release()
+      
 
 thread1 = threading.Thread(target=recieveMessage)
 thread2 = threading.Thread(target=joystick)
