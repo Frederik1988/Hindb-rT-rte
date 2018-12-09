@@ -52,10 +52,10 @@ GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
-i = 1
 c = threading.Condition()
+i = 1
 
-def joystick(i): 
+def joystick(): 
   
   global i
   
@@ -90,7 +90,7 @@ def joystick(i):
       c.release()
           
 
-def recieveMessage(i):
+def recieveMessage():
   global i
   
   while True:    
@@ -125,8 +125,8 @@ def recieveMessage(i):
       c.notify_all()
       
 
-thread1 = threading.Thread(target=recieveMessage, args=(i,))
-thread2 = threading.Thread(target=joystick, args=(i,))
+thread1 = threading.Thread(target=recieveMessage)
+thread2 = threading.Thread(target=joystick)
 			  
 thread1.start()
 thread2.start()
