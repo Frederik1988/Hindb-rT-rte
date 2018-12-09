@@ -53,6 +53,7 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
 global i 
+i = 1
 
 def joystick(i): 
   
