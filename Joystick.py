@@ -74,9 +74,10 @@ def joystick():
           pwm.ChangeDutyCycle(12)
           sock.send(bytes(messageJoystickUnlock, "UTF-8"))
           goodbye = loop.create_task(sense.show_message(str("   HA EN DEJLIG DAG"), scroll_speed=0.05, text_colour=[0, 0, 255]))
+          await asyncio.wait(goodbye)
           sense.set_pixels(unlocked)
           i = 0
-          await asyncio.wait(goodbye)
+          
     
     if (i == 0):
       for event in sense.stick.get_events():
@@ -117,11 +118,12 @@ def recieveMessage():
       pwm.ChangeDutyCycle(12)        
       sock.send(bytes(messageUnlocked, "UTF-8"))
       welcome = = loop.create_task(sense.show_message(str("   VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255]))
+      await asyncio.wait(welcome)
       sense.set_pixels(unlocked)
       i = 0
       lock.acquire()
       lock.release()
-      await asyncio.wait(welcome)
+      
       
 
 thread1 = threading.Thread(target=recieveMessage)
