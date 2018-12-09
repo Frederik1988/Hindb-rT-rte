@@ -15,7 +15,9 @@ messageLocked = "The door is locked"
 
 messageUnlocked = "The door is unlocked"
 
-messageJoystick = "The door is unocked by joystick"
+messageJoystickUnlock = "The door is unlocked by joystick"
+
+messageJoystickLock = "The door is locked by joystick"
 
 sense = SenseHat()
 
@@ -61,7 +63,7 @@ def joystick(i):
       for event in sense.stick.get_events():
         if event.action == "pressed":
           pwm.ChangeDutyCycle(12)
-          sock.send(bytes(messageJoystick, "UTF-8"))
+          sock.send(bytes(messageJoystickUnlock, "UTF-8"))
           sense.show_message(str("HA EN DEJLIG DAG"), scroll_speed=0.05, text_colour=[0, 0, 255])
           sense.set_pixels(unlocked)
           i = 0
@@ -70,6 +72,7 @@ def joystick(i):
       for event in sense.stick.get_events():
         if event.action == "pressed":
           pwm.ChangeDutyCycle(7)
+          sock.send(bytes(messageJoystickLock, "UTF-8"))
           sense.set_pixels(locked)
           i = 1
           
