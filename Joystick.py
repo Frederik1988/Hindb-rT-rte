@@ -9,18 +9,12 @@ TCP_IP = "192.168.1.233"
 TCP_PORT = 9576
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
 sock.connect((TCP_IP, TCP_PORT)) 
 
 messageLocked = "The door is locked"
-
 messageUnlocked = "The door is unlocked"
-
 messageJoystickUnlock = "The door is unlocked by joystick"
-
 messageJoystickLock = "The door is locked by joystick"
-
-sense = SenseHat()
 
 g = (0,255,0)
 r = (255,0,0)
@@ -48,13 +42,15 @@ unlocked = [
   s,g,g,g,g,g,g,s
 ]
 
+sense = SenseHat()
 GPIO.setmode (GPIO.BOARD)
 GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
-pwm.start(7)
-sense.set_pixels(locked)
 lock = Lock()
 i = 1
+
+pwm.start(7)
+sense.set_pixels(locked)
 
 def joystick(): 
   
@@ -82,7 +78,6 @@ def joystick():
           sock.send(bytes(messageJoystickLock, "UTF-8"))
           sense.set_pixels(locked)
           i = 1
-          
 
 def recieveMessage():
   
@@ -94,9 +89,6 @@ def recieveMessage():
     fromServer = data.decode('utf-8')
     message =  fromServer [0 : 1 -len(fromServer)]
     name = fromServer [1 : len(fromServer)-2]
-    
-    
-  
           
     if (message =='l'):
       
