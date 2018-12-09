@@ -55,7 +55,7 @@ sense.set_pixels(locked)
 c = threading.Condition()
 i = 1
 
-def joystick(): 
+def joystick(i): 
   
   global i
   
@@ -90,7 +90,7 @@ def joystick():
       c.release()
           
 
-def recieveMessage():
+def recieveMessage(i):
   global i
   
   while True:    
@@ -125,8 +125,8 @@ def recieveMessage():
       c.notify_all()
       
 
-thread1 = threading.Thread(target=recieveMessage)
-thread2 = threading.Thread(target=joystick)
+thread1 = threading.Thread(target=recieveMessage, args=(i,))
+thread2 = threading.Thread(target=joystick, args=(i,))
 			  
 thread1.start()
 thread2.start()
