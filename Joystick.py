@@ -52,6 +52,7 @@ GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
+i = 1
 
 def joystick(i): 
   
@@ -100,10 +101,6 @@ def recieveMessage(i):
       sense.show_message(str("VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255])
       i = 0
       sense.set_pixels(unlocked)
-      
-      
-if __name__ == "__main__":
-	i = 1
 
 thread1 = threading.Thread(target=recieveMessage, args=(i,))
 thread2 = threading.Thread(target=joystick, args=(i,))
