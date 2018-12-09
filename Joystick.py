@@ -55,7 +55,7 @@ sense.set_pixels(locked)
 lock = Lock()
 i = 1
 
-def joystick(i): 
+def joystick(): 
   
   global i
   
@@ -84,7 +84,7 @@ def joystick(i):
           i = 1
           
 
-def recieveMessage(i):
+def recieveMessage():
   
   global i
   
@@ -115,8 +115,8 @@ def recieveMessage(i):
       sense.show_message(str("VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255])
       sense.set_pixels(unlocked)
 
-thread1 = threading.Thread(target=recieveMessage, args=(i,))
-thread2 = threading.Thread(target=joystick, args=(i,))
+thread1 = threading.Thread(target=recieveMessage)
+thread2 = threading.Thread(target=joystick)
 			  
 thread1.start()
 thread2.start()
