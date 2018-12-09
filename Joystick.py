@@ -76,6 +76,7 @@ def joystick():
           goodbye = loop.create_task(sense.show_message(str("   HA EN DEJLIG DAG"), scroll_speed=0.05, text_colour=[0, 0, 255]))
           sense.set_pixels(unlocked)
           i = 0
+          await asyncio.wait(goodbye)
     
     if (i == 0):
       for event in sense.stick.get_events():
@@ -84,7 +85,7 @@ def joystick():
           sock.send(bytes(messageJoystickLock, "UTF-8"))
           sense.set_pixels(locked)
           i = 1
-          await asyncio.wait(welcome)
+          
           
 
 def recieveMessage():
@@ -130,3 +131,4 @@ thread1.start()
 thread2.start()
 
 thread1.join()
+thread2.join()
