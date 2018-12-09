@@ -4,7 +4,6 @@ from sense_hat import SenseHat
 import socket
 import threading
 from threading import Lock, Thread
-import asyncio
 
 TCP_IP = "192.168.1.233"
 TCP_PORT = 9576
@@ -54,11 +53,10 @@ GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
-loop = asyncio.get_event_loop()
 lock = Lock()
 i = 1
 
-async def joystick(): 
+def joystick(): 
   
   global i
   
@@ -73,11 +71,9 @@ async def joystick():
         if event.action == "pressed":
           pwm.ChangeDutyCycle(12)
           sock.send(bytes(messageJoystickUnlock, "UTF-8"))
-          goodbye = loop.create_task(sense.show_message(str("   HA EN DEJLIG DAG"), scroll_speed=0.05, text_colour=[0, 0, 255]))
-          await asyncio.wait(goodbye)
+          sense.show_message(str("HA EN DEJLIG DAG"), scroll_speed=0.05, text_colour=[0, 0, 255])
           sense.set_pixels(unlocked)
           i = 0
-          
     
     if (i == 0):
       for event in sense.stick.get_events():
@@ -87,9 +83,8 @@ async def joystick():
           sense.set_pixels(locked)
           i = 1
           
-          
 
-async def recieveMessage():
+def recieveMessage():
   
   global i
   
@@ -117,13 +112,11 @@ async def recieveMessage():
       
       pwm.ChangeDutyCycle(12)        
       sock.send(bytes(messageUnlocked, "UTF-8"))
-      welcome = loop.create_task(sense.show_message(str("   VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255]))
-      await asyncio.wait(welcome)
+      sense.show_message(str("VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255])
       sense.set_pixels(unlocked)
       i = 0
       lock.acquire()
       lock.release()
-      
       
 
 thread1 = threading.Thread(target=recieveMessage)
