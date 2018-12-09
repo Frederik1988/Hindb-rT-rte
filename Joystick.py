@@ -52,7 +52,7 @@ GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
-global i = 1
+global i 
 
 def joystick(i): 
   
@@ -66,7 +66,7 @@ def joystick(i):
           sock.send(bytes(messageJoystickUnlock, "UTF-8"))
           sense.show_message(str("HA EN DEJLIG DAG"), scroll_speed=0.05, text_colour=[0, 0, 255])
           sense.set_pixels(unlocked)
-          global i = 0
+          i = 0
     
     if (i == 0):
       for event in sense.stick.get_events():
@@ -74,7 +74,7 @@ def joystick(i):
           pwm.ChangeDutyCycle(7)
           sock.send(bytes(messageJoystickLock, "UTF-8"))
           sense.set_pixels(locked)
-          global i = 1
+          i = 1
           
 
 def recieveMessage(i):
@@ -89,7 +89,7 @@ def recieveMessage(i):
           
     if (message =='l'):
       
-      global i = 1
+      i = 1
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
       sock.send(bytes(messageLocked, "UTF-8"))
@@ -97,7 +97,7 @@ def recieveMessage(i):
       
     if (message == 'o'):  
       
-      global i = 0
+      i = 0
       pwm.ChangeDutyCycle(12)        
       sock.send(bytes(messageUnlocked, "UTF-8"))
       sense.show_message(str("VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255])
