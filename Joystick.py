@@ -58,7 +58,7 @@ loop = asyncio.get_event_loop()
 lock = Lock()
 i = 1
 
-def joystick(): 
+async def joystick(): 
   
   global i
   
@@ -89,7 +89,7 @@ def joystick():
           
           
 
-def recieveMessage():
+async def recieveMessage():
   
   global i
   
