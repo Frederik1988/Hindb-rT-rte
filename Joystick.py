@@ -57,10 +57,11 @@ i = 1
 
 def joystick(i): 
   
+  global i
   
   while True:
     
-    global i
+    
     lock.acquire()
     lock.release()
     
@@ -85,13 +86,15 @@ def joystick(i):
 
 def recieveMessage(i):
   
+  global i
+  
   while True:    
   
     data = sock.recv(1024)
     fromServer = data.decode('utf-8')
     message =  fromServer [0 : 1 -len(fromServer)]
     name = fromServer [1 : len(fromServer)-2]
-    global i
+    
     lock.acquire()
     lock.release()
   
