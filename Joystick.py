@@ -80,6 +80,7 @@ def joystick():
         if event.action == "pressed":
           pwm.ChangeDutyCycle(7)
           sock.send(bytes(messageJoystickLock, "UTF-8"))
+          sense.show_message(str(" VELKOMMEN HJEM "), scroll_speed=0.04, text_colour=[0, 0, 255])
           sense.set_pixels(locked)
           i = 1
           
