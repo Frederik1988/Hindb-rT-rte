@@ -89,7 +89,7 @@ def recieveMessage():
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
       sock.send(bytes(messageLocked, "UTF-8"))
-      i = 1
+      i = 0
       
     if (message == 'o'):  
       
@@ -97,7 +97,7 @@ def recieveMessage():
       sock.send(bytes(messageUnlocked, "UTF-8"))
       sense.show_message(str("VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255])
       sense.set_pixels(unlocked)
-      i = 0
+      i = 1
 
 if __name__ == "__main__":
 	i = 1
