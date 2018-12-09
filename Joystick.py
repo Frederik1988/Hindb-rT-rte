@@ -52,16 +52,11 @@ GPIO.setup (11, GPIO.OUT)
 pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
-c = threading.Condition()
 i = 1
 
 def joystick(i): 
   
-  global i
-  
   while True:
-    
-    c.acquire()
     
     if (i ==1):
       
@@ -72,10 +67,6 @@ def joystick(i):
           sense.show_message(str("HA EN DEJLIG DAG"), scroll_speed=0.05, text_colour=[0, 0, 255])
           sense.set_pixels(unlocked)
           i = 0
-          c.notify_all()
-        else:
-          c.wait()
-        c.release()
     
     if (i == 0):
       for event in sense.stick.get_events():
@@ -84,18 +75,11 @@ def joystick(i):
           sock.send(bytes(messageJoystickLock, "UTF-8"))
           sense.set_pixels(locked)
           i = 1
-          c.notify_all()
-    else:
-      c.wait()
-      c.release()
           
 
 def recieveMessage(i):
-  global i
   
   while True:    
-    
-    c.acquire()
   
     data = sock.recv(1024)
     fromServer = data.decode('utf-8')
@@ -105,25 +89,19 @@ def recieveMessage(i):
           
     if (message =='l'):
       
+      i = 1
       pwm.ChangeDutyCycle(7)
       sense.set_pixels(locked)
       sock.send(bytes(messageLocked, "UTF-8"))
-      i = 1
-      c.notify_all()
-    
-      
       
       
     if (message == 'o'):  
       
-      
+      i = 0
       pwm.ChangeDutyCycle(12)        
       sock.send(bytes(messageUnlocked, "UTF-8"))
       sense.show_message(str("VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255])
       sense.set_pixels(unlocked)
-      i = 0
-      c.notify_all()
-      
 
 thread1 = threading.Thread(target=recieveMessage, args=(i,))
 thread2 = threading.Thread(target=joystick, args=(i,))
