@@ -117,7 +117,7 @@ async def recieveMessage():
       
       pwm.ChangeDutyCycle(12)        
       sock.send(bytes(messageUnlocked, "UTF-8"))
-      welcome = = loop.create_task(sense.show_message(str("   VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255]))
+      welcome = loop.create_task(sense.show_message(str("   VELKOMMEN HJEM " + name), scroll_speed=0.05, text_colour=[0, 0, 255]))
       await asyncio.wait(welcome)
       sense.set_pixels(unlocked)
       i = 0
