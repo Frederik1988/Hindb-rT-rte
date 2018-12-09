@@ -53,6 +53,8 @@ pwm = GPIO.PWM (11, 50)
 pwm.start(7)
 sense.set_pixels(locked)
 
+if __name__ == "__main__":
+	i = 1
 
 def joystick(i): 
   
@@ -103,9 +105,7 @@ def recieveMessage():
       i = 1
       
 
-if __name__ == "__main__":
-	i = 0
-	
+
 thread1 = threading.Thread(target=recieveMessage)
 thread2 = threading.Thread(target=joystick, args=(i,))
 			  
