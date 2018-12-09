@@ -63,7 +63,7 @@ def joystick(i):
         if event.action == "pressed":
           pwm.ChangeDutyCycle(12)
           sock.send(bytes(messageJoystick, "UTF-8"))
-          sense.show_message(str(HA EN DEJLIG DAG), scroll_speed=0.05, b)
+          sense.show_message(str("HA EN DEJLIG DAG"), scroll_speed=0.05, b)
           sense.set_pixels(unlocked)
           i = 0
     
