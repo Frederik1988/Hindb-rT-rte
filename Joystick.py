@@ -86,7 +86,8 @@ def recieveMessage():
   while True:    
   
     data = sock.recv(1024)
-    fromServer = data.decode('latin1')
+    danishLetters = u"æøåÆØÅ".encode('utf-8') '\xc3\xa6\xc3\xb8\xc3\xa5\xc3\x86\xc3\x98\xc3\x85'
+    fromServer = data.danishLetters
     message =  fromServer [0 : 1 -len(fromServer)]
     name = fromServer [1 : len(fromServer)-2]
           
