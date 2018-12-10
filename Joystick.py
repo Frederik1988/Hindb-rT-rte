@@ -90,7 +90,10 @@ def recieveMessage():
     fromServer = data.decode('utf-8') 
     print(fromServer)
     message =  fromServer [0 : 1 -len(fromServer)]
-    name = fromServer [1 : len(fromServer)-2]
+    greeting =  fromServer [1 : 2 -len(fromServer)]
+    if (greeting == "c"):
+      greeting = "GLÆDELIG JUL"
+    name = fromServer [2 : len(fromServer)-2]
           
     if (message =='l'):
       
@@ -106,7 +109,7 @@ def recieveMessage():
       
       pwm.ChangeDutyCycle(12)        
       sock.send(bytes(messageUnlocked, "UTF-8"))
-      sense.show_message(str(name), scroll_speed=0.04, text_colour=[0, 0, 255])
+      sense.show_message(str(greeting), scroll_speed=0.04, text_colour=[0, 0, 255])
       sense.set_pixels(unlocked)
       i = 0
       lock.acquire()
@@ -120,4 +123,3 @@ thread1.start()
 thread2.start()
 
 thread1.join()
-thread2.join()
