@@ -117,3 +117,5 @@ thread2 = threading.Thread(target=joystick)
 thread1.start()
 thread2.start()
 
+thread1.join()
+thread2.join()
