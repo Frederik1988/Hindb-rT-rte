@@ -104,7 +104,7 @@ def recieveMessage():
       
       pwm.ChangeDutyCycle(12)        
       sock.send(bytes(messageUnlocked, "UTF-8"))
-      sense.show_message(str("VELKOMMEN HJEM " + name), scroll_speed=0.04, text_colour=[0, 0, 255])
+      sense.show_message(str(name), scroll_speed=0.04, text_colour=[0, 0, 255])
       sense.set_pixels(unlocked)
       i = 0
       lock.acquire()
