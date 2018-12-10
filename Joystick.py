@@ -86,7 +86,7 @@ def recieveMessage():
   while True:    
   
     data = sock.recv(1024)
-    fromServer = data.decode('utf-8')
+    fromServer = data.encode('latin1').decode('utf-8')
     message =  fromServer [0 : 1 -len(fromServer)]
     name = fromServer [1 : len(fromServer)-2]
           
