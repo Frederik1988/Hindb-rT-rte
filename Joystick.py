@@ -16,7 +16,6 @@ messageUnlocked = "The door is unlocked"
 messageJoystickUnlock = "The door is unlocked by joystick"
 messageJoystickLock = "The door is locked by joystick"
 
->>> u"æøåÆØÅ".encode('utf-8') '\xc3\xa6\xc3\xb8\xc3\xa5\xc3\x86\xc3\x98\xc3\x85' >>>
 
 g = (0,255,0)
 r = (255,0,0)
@@ -89,6 +88,7 @@ def recieveMessage():
   
     data = sock.recv(1024)
     fromServer = data.decode('utf-8') 
+    print(fromServer)
     message =  fromServer [0 : 1 -len(fromServer)]
     name = fromServer [1 : len(fromServer)-2]
           
