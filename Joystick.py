@@ -5,7 +5,7 @@ import socket
 import threading
 from threading import Lock, Thread
 
-TCP_IP = "192.168.1.233"
+TCP_IP = "192.168.24.239"
 TCP_PORT = 9576
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
